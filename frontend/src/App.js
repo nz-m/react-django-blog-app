@@ -11,6 +11,7 @@ import EditBlog from "./pages/EditBlog";
 import CreateBlog from "./pages/CreateBlog";
 import SignUp from "./pages/SignUp";
 import { AuthContextProvider } from "./context/AuthContext";
+import BlogMain from "./components/BlogMain";
 
 
 // Make profile page private
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <AuthContextProvider>
         <Navbar />
+        <BlogMain/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
