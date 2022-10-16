@@ -17,7 +17,7 @@ import BlogMain from "./components/BlogMain";
 // Make profile page private
 function App() {
   return (
-    <div className="App">
+    <div className="container mx-auto">
       <AuthContextProvider>
         <Navbar />
         <BlogMain/>
