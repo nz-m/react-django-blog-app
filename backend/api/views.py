@@ -94,7 +94,9 @@ def createComment(request):
     serializer = CommentCreateSerializer(data=data)
     if serializer.is_valid():
         serializer.save(blog=blog)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        comment = Comment.objects.latest('id')
+        commentSerializer = CommentSerializer(comment, many=False)
+        return Response(commentSerializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
