@@ -34,9 +34,7 @@ def getBlog(request, pk):
     blog = Blog.objects.get(pk=pk)
     comments = Comment.objects.filter(blog=blog)
     blogSerializer = BlogSerializer(blog, many=False)
-    commentSerializer = CommentSerializer(comments, many=True)
-    return Response({'blog': blogSerializer.data, 'comments': commentSerializer.data})
-
+    return Response(blogSerializer.data)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -94,9 +92,10 @@ def createComment(request):
     serializer = CommentCreateSerializer(data=data)
     if serializer.is_valid():
         serializer.save(blog=blog)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        comment = Comment.objects.latest('id')
+        commentSerializer = CommentSerializer(comment, many=False)
+        return Response(commentSerializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
