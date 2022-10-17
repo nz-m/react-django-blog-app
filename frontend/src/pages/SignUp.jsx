@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const nagivate = useNavigate();
@@ -45,7 +45,7 @@ const SignUp = () => {
     const data = await response.json();
 
     if (response.status === 200) {
-      nagivate("/login",{ state: { message: "Successfully registered!" } });
+      nagivate("/login", { state: { message: "Successfully registered!" } });
     } else {
       setMessage(data.detail);
     }
@@ -53,8 +53,7 @@ const SignUp = () => {
 
   return (
     <>
-      {message ? message : <h1> No message</h1>}
-      <pre>{JSON.stringify(user, null, 2)}</pre>
+      {message ? message : null}
       <h1>SignUp form</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>

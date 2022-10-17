@@ -1,24 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
-import axios from "axios";
+import Comment from "../components/Comment";
+import { GetContent } from "../services/GetContent";
 
-// Only user who created the blog can edit and delete the blog
 const BlogDetails = () => {
   const { user, authToken } = useContext(AuthContext);
   const navigate = useNavigate();
-  const URL = "http://127.0.0.1:8000/api/blogs/";
+  const URL_CREATE_COMMENT = "http://127.0.0.1:8000/api/comments/create/";
   const { id } = useParams();
-  const [blogData, setBlogData] = useState({});
-  const { blog, comments } = blogData;
+
+  const [blog, setBlog] = useState({});
+  const [comments, setComments] = useState([]);
+
   useEffect(() => {
-    const getBlog = async () => {
-      const response = await axios.get(`${URL}${id}`);
-      const data = await response.data;
-      setBlogData(data);
-    };
-    getBlog();
+    GetContent.fetchBlog(id).then((data) => {
+      setBlog(data);
+    });
+    GetContent.fetchComments(id).then((data) => {
+      setComments(data);
+    });
   }, [id]);
 
   const {
@@ -30,28 +32,39 @@ const BlogDetails = () => {
     image,
     category,
     total_likes,
-    likes: userLiked,
+    reading_time,
   } = blog || {};
 
-  const [likes, setLikes] = useState(total_likes);
+  const [comment, setComment] = useState("");
 
-  useEffect(() => {
-    setLikes(total_likes);
-  }, [total_likes]);
-
-  const handleEdit = () => {
-    navigate(`/edit/${id}`, { state: { blog } });
+  const handleSubmitComment = async (e) => {
+    if (!user) {
+      navigate("/login", {
+        state: { message: "Please login to comment!" },
+      });
+    } else {
+      e.preventDefault();
+      const response = await fetch(URL_CREATE_COMMENT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(authToken.access),
+        },
+        body: JSON.stringify({
+          blog: id,
+          user: user.user_id,
+          body: comment,
+        }),
+      });
+      const data = await response.json();
+      setComments([...comments, data]);
+      setComment("");
+    }
   };
 
-  const handleDelete = async () => {
-    await fetch(`http://127.0.0.1:8000/api/blogs/${id}/delete/`, {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer " + String(authToken.access),
-      },
-    });
-
-    navigate("/");
+  const handleChangeComment = (e) => {
+    const { value } = e.target;
+    setComment(value);
   };
 
   const handleLike = async () => {
@@ -67,7 +80,7 @@ const BlogDetails = () => {
       }
     );
     const data = await response.json();
-    setLikes(data.total_likes);
+    setBlog((prev) => ({ ...prev, total_likes: data.total_likes }));
   };
 
   const handleUnlike = async () => {
@@ -83,122 +96,100 @@ const BlogDetails = () => {
       }
     );
     const data = await response.json();
-    setLikes(data.total_likes);
+    setBlog((prev) => ({ ...prev, total_likes: data.total_likes }));
   };
 
-  // comment section
-
-  const [comment, setComment] = useState("");
-  const URL_COMMENT = "http://127.0.0.1:8000/api/comments/create/";
-
-  const handleSubmitComment = async (e) => {
-    e.preventDefault();
-    const response = await fetch(URL_COMMENT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(authToken.access),
-      },
-      body: JSON.stringify({
-        blog: id,
-        user: user.user_id,
-        body: comment,
-      }),
-    });
-    const data = await response.json();
-    setBlogData((prev) => {
-      return {
-        ...prev,
-        comments: [...prev.comments, data],
-      };
-    });
-    setComment("");
-  };
-
-  const handleChangeComment = (e) => {
-    const { value } = e.target;
-    setComment(value);
-  };
-
-  const handleDeleteComment = async (commentId) => {
-    await fetch(`http://127.0.0.1:8000/api/comments/${commentId}/delete/`, {
+  const handleDelete = async () => {
+    await fetch(`http://127.0.0.1:8000/api/blogs/${id}/delete/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + String(authToken.access),
       },
     });
-
-    setBlogData((prev) => {
-      return {
-        ...prev,
-        comments: prev.comments.filter((comment) => comment.id !== commentId),
-      };
-    });
+    navigate("/");
   };
+
+  const handleEdit = () => {
+    navigate(`/edit/${id}`, { state: { blog } });
+  };
+
+  const handleDeleteComment = useCallback(
+    async (commentId) => {
+      await fetch(`http://127.0.0.1:8000/api/comments/${commentId}/delete/`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + String(authToken.access),
+        },
+      });
+      setComments((prev) => prev.filter((comment) => comment.id !== commentId));
+    },
+    [authToken?.access]
+  );
 
   return (
     <>
-      <pre>{JSON.stringify(blogData, null, 2)}</pre>
-
-      <h1>Title : {title}</h1>
-      <p>Content : {content}</p>
-      <p>Author : {author_name}</p>
-      <p>Added : {date_created}</p>
-      <p>Updated : {date_updated}</p>
-      <img
-        src={`http://127.0.0.1:8000${image}`}
-        alt="blog"
-        style={{ width: "200px", height: "200px" }}
-      />
+      <div className="blog-details">
+        <h2>{title}</h2>
+        <p>Written by {author_name}</p>
+        <p>Category: {category}</p>
+        <p>Added: {date_created}</p>
+        <p>Updated: {date_updated}</p>
+        <p>Reading time : {reading_time}</p>
+        <img
+          src={`http://127.0.0.1:8000${image}`}
+          alt="blog"
+          style={{ width: "200px", height: "200px" }}
+        />
+        <p>{content}</p>
+      </div>
 
       <p>Category : {category}</p>
-      <p>Likes : {likes}</p>
+      <p>Likes :{total_likes}</p>
 
-      {localStorage.getItem("authToken") && (
+      {user && user.username === blog.author_name ? (
         <>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={handleDelete}> Delete</button>
+          <button onClick={handleDelete}>delete blog</button>
+          <button onClick={handleEdit}>edit blog</button>
+        </>
+      ) : null}
+
+      {/* Like button */}
+
+      {user ? (
+        <>
+          <button onClick={handleLike}>
+            Like
+            {total_likes}
+          </button>
+          <button onClick={handleUnlike}>Unlike</button>
+        </>
+      ) : (
+        <>
+          <button
+            onClick={() =>
+              navigate("/login", {
+                state: { message: "Please login to like!" },
+              })
+            }
+          >
+            Like
+            {total_likes}
+          </button>
+          <button onClick={() => navigate("/login")}>Unlike</button>
         </>
       )}
 
       <h1>Comments</h1>
-      {comments?.map((comment) => {
-        const { id, username, body, date_format } = comment;
-        return (
-          <div
-            key={id}
-            style={{
-              border: "1px solid black",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "10px",
-              flexDirection: "column",
-            }}
-          >
-            <p>User : {username}</p>
-            <p>Body : {body}</p>
-            <p>Date : {date_format}</p>
-
-            {user?.username === username && (
-              <button onClick={() => handleDeleteComment(id)}>
-                Delete Comment
-              </button>
-            )}
-          </div>
-        );
-      })}
-
-      {user &&
-        (userLiked?.includes(user.user_id) ? (
-          <button onClick={handleUnlike}>
-            Unlike
-            {likes}
-          </button>
-        ) : (
-          <button onClick={handleLike}>Like</button>
-        ))}
+      {comments?.map((comment) => (
+        <Comment
+          key={comment.id}
+          comment={comment}
+          user={user}
+          handleDeleteComment={handleDeleteComment}
+        />
+      ))}
 
       <h2>Comment adding form</h2>
       <form onSubmit={handleSubmitComment}>

@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Music from "./pages/Music";
@@ -12,8 +11,6 @@ import CreateBlog from "./pages/CreateBlog";
 import SignUp from "./pages/SignUp";
 import { AuthContextProvider } from "./context/AuthContext";
 
-
-// Make profile page private
 function App() {
   return (
     <div className="App">
