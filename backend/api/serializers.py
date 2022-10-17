@@ -21,6 +21,7 @@ class BlogSerializer(ModelSerializer):
             'total_likes',
             'summary',
             'author_name',
+            'reading_time',
         ]
 
 class CommentSerializer(ModelSerializer):

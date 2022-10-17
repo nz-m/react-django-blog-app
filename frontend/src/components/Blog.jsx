@@ -8,11 +8,10 @@ const Blog = (props) => {
     content,
     author_name,
     date_created,
-    date_updated,
     image,
     category,
     total_likes,
-
+    reading_time,
   } = props;
 
   return (
@@ -30,16 +29,14 @@ const Blog = (props) => {
       <p>Content : {content}</p>
       <p>Author : {author_name}</p>
       <p>Added : {date_created}</p>
-      <p>Updated : {date_updated}</p>
+      <p>Reading time : {reading_time}</p>{" "}
       <img
         src={`http://127.0.0.1:8000${image}`}
         alt="blog"
         style={{ width: "200px", height: "200px" }}
       />
-
       <p>Category : {category}</p>
       <p>Likes : {total_likes}</p>
-
       <button>
         <Link to={`/blog/${id}`}>Continue reading</Link>
       </button>
