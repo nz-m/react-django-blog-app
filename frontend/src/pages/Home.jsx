@@ -15,12 +15,13 @@ const Home = () => {
     getBlogs();
   }, []);
   return (
-    <>
-      <h1>Home Page</h1>
+    <div className="grid grid-cols-2">
+
 
       {blogs.map((blog) => {
         return (
-          <Blog
+       
+   <Blog 
             key={blog.id}
             id={blog.id}
             title={blog.title}
@@ -34,9 +35,11 @@ const Home = () => {
             likes={blog.likes}
             reading_time={blog.reading_time}
           />
+      
+       
         );
       })}
-    </>
+    </div>
   );
 };
 
