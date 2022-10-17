@@ -10,14 +10,14 @@ import EditBlog from "./pages/EditBlog";
 import CreateBlog from "./pages/CreateBlog";
 import SignUp from "./pages/SignUp";
 import { AuthContextProvider } from "./context/AuthContext";
-import BlogMain from "./components/BlogMain";
+
 
 function App() {
   return (
-    <div className="App">
+    <div className="container mx-auto">
       <AuthContextProvider>
         <Navbar />
-        <BlogMain/>
+       
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
