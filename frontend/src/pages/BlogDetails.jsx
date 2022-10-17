@@ -4,7 +4,13 @@ import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
 import Comment from "../components/Comment";
 import { GetContent } from "../services/GetContent";
+import { Link } from "react-router-dom";
+import blog from '../Assets/blog.png'
+import rownok from '../Assets/rownok.jpeg'
+import {AiFillLike} from 'react-icons/ai'
 
+import {HiOutlineCalendar} from 'react-icons/hi'
+import {IoIosTimer} from 'react-icons/io'
 const BlogDetails = () => {
   const { user, authToken } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -201,6 +207,48 @@ const BlogDetails = () => {
         />
         <button type="submit">Add Comment</button>
       </form>
+
+      <div className='container mx-auto  my-10'>
+      <div className="rounded-2xl bg-slate-50 relative shadow-xl">
+        <div className="overflow-hidden rounded-t-2xl relative">
+        <img className=' h-[500px] w-full object-cover ' src={`http://127.0.0.1:8000${image}`} alt="" />
+        <p className='absolute top-4 left-4 bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 font-semibold text-white rounded-3xl cursor-pointer hover:scale-110 transition duration-500'>{category}</p>
+        </div>
+     <div className="flex justify-between px-10 pt-4">
+   
+     <div className="flex gap-2 items-center">
+      <img className='w-10 h-10 rounded-full' src={rownok} alt="" />
+      <p className='text-sm'>{author_name}</p>
+     </div>
+     <div className='flex items-center gap-1'>
+          <HiOutlineCalendar className='font-semibold text-2xl text-blue-600'/>
+          <p className="text-lg">{date_created}</p>
+         
+          <IoIosTimer className='text-purple-600 font-semibold text-2xl ml-4'/>
+          <p className="text-lg">{reading_time}</p>
+          </div>
+     </div>
+      <div className="flex flex-col px-10 py-2">
+      <div className="flex justify-between items-center">
+      <p className='text-3xl  font-semibold cursor-pointer'>{title}</p>
+      <div className="flex items-center gap-1 text-xl cursor-pointer">
+        <AiFillLike/>
+      <p>{total_likes}</p>
+      </div>
+      
+      </div>
+     
+      <div className="flex gap-1 justify-center items-center">
+      <p className='text-lg text-justify py-4'>{content}</p>
+      </div>
+    
+      </div>
+   
+      </div>
+     
+ 
+    </div>
+
     </>
   );
 };
