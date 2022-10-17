@@ -56,6 +56,13 @@ class Blog(models.Model):
     def date_updated(self):
         return self.updated_at.strftime("%d-%b-%y, %I:%M %p")
 
+    def reading_time(self):
+        total_words = len(self.content.split())
+        reading_time = round(total_words/200)
+        if reading_time == 0:
+            return 'Less than a minute'
+        return str(reading_time) + ' min'
+
     def delete(self, *args, **kwargs):
         self.image.delete()
         super().delete(*args, **kwargs)

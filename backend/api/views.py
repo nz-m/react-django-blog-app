@@ -36,6 +36,8 @@ def getBlog(request, pk):
     blogSerializer = BlogSerializer(blog, many=False)
     return Response(blogSerializer.data)
 
+
+
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getMyBlogs(request):

@@ -5,6 +5,7 @@ import AuthContext from "../context/AuthContext";
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const navigate = useNavigate();
+
   return (
     <>
       <nav>
@@ -27,9 +28,11 @@ const Navbar = () => {
           <li>
             <Link to="/technology">Technology</Link>
           </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
+          {user ? (
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+          ) : null}
 
           {user ? (
             <>

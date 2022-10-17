@@ -2,20 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
-// fields =  {
-
-//         "title": "This is from post reqgfsdgdfuest",
-//         "content": "This is tdasdasdest blodasg",
-//         "category": "technology",
-//         "author": 1
-//     }
-
 const CreateBlog = () => {
   const URL = "http://127.0.0.1:8000/api/blogs/create/";
   const navigate = useNavigate();
   const [category, setCategory] = useState({});
 
-  const { user ,authToken} = useContext(AuthContext);
+  const { user, authToken } = useContext(AuthContext);
 
   const [blog, setBlog] = useState({
     title: "",
@@ -78,7 +70,6 @@ const CreateBlog = () => {
     fetch(URL, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         navigate("/profile");
       })
       .catch((err) => {

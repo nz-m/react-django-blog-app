@@ -7,16 +7,14 @@ const AuthContext = createContext();
 export default AuthContext;
 
 export const AuthContextProvider = ({ children }) => {
+  const userData = JSON.parse(localStorage.getItem("user"));
+  const tokenData = JSON.parse(localStorage.getItem("authToken"));
   const [loading, setLoading] = useState(true);
   let [user, setUser] = useState(
-    localStorage.getItem("user")
-      ? JSON.parse(localStorage.getItem("user"))
-      : null
+    localStorage.getItem("user") ? userData : null
   );
   let [authToken, setAuthToken] = useState(
-    localStorage.getItem("authToken")
-      ? JSON.parse(localStorage.getItem("authToken"))
-      : null
+    localStorage.getItem("authToken") ? tokenData : null
   );
   const navigate = useNavigate();
 
@@ -71,12 +69,12 @@ export const AuthContextProvider = ({ children }) => {
     if (loading) {
       updateToken();
     }
-    const fiveHours = 5 * 60 * 60 * 1000;
+    const threeHours = 1000 * 60 * 60 * 3;
     let interval = setInterval(() => {
       if (authToken) {
         updateToken();
       }
-    }, fiveHours);
+    }, threeHours);
 
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
