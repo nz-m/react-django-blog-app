@@ -34,8 +34,8 @@ def getBlog(request, pk):
     blog = Blog.objects.get(pk=pk)
     comments = Comment.objects.filter(blog=blog)
     blogSerializer = BlogSerializer(blog, many=False)
-    commentSerializer = CommentSerializer(comments, many=True)
-    return Response({'blog': blogSerializer.data, 'comments': commentSerializer.data})
+    return Response(blogSerializer.data)
+
 
 
 @api_view(['GET'])
