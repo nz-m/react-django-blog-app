@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const nagivate = useNavigate();
@@ -54,64 +54,136 @@ const SignUp = () => {
   return (
     <>
       {message ? message : null}
-      <h1>SignUp form</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
+   
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <div className="w-full bg-gray-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 ">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                Sign Up to your account
+              </h1>
+              <form className=" grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleSubmit}>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Username
+                  </label>
+                  <input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                    type="text"
           name="username"
           id="username"
           value={user.username}
           onChange={handleChange}
-        />
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Email
+                  </label>
+                  <input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={user.email}
+                    onChange={handleChange}
+                  />
+                </div>
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={user.email}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={user.password}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="confirm_password">Confirm Password</label>
-        <input
-          type="password"
-          name="confirm_password"
+             
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="*******"
+                    value={user.password}
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="*******"
+                    name="confirm_password"
           id="confirm_password"
           value={user.confirm_password}
           onChange={handleChange}
-        />
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    First Name
+                  </label>
+                  <input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                    type="text"
+                    name="first_name"
+                    id="first_name"
+                    value={user.first_name}
+                    onChange={handleChange}
+                  />
+                </div>
 
-        <label htmlFor="first_name">First Name</label>
-
-        <input
-          type="text"
-          name="first_name"
-          id="first_name"
-          value={user.first_name}
-          onChange={handleChange}
-        />
-        <label htmlFor="last_name">Last Name</label>
-        <input
-          type="text"
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Last Name
+                  </label>
+                  <input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                    type="text"
           name="last_name"
           id="last_name"
           value={user.last_name}
           onChange={handleChange}
-        />
-
-        <button type="submit">Submit</button>
-      </form>
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+                >
+                  Sign Up
+                </button>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Already have an account yet?{" "}
+                  <Link
+                    to={"/signup"}
+                    className="font-medium text-teal-600 hover:underline dark:text-teal-500"
+                  >
+                    Sign In
+                  </Link>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
     </>
   );
 };

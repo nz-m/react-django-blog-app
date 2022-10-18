@@ -60,7 +60,7 @@ class Blog(models.Model):
         total_words = len(self.content.split())
         reading_time = round(total_words/200)
         if reading_time == 0:
-            return 'Less than a minute'
+            return '< 1 min'
         return str(reading_time) + ' min'
 
     def delete(self, *args, **kwargs):
