@@ -10,7 +10,7 @@ import rownok from '../Assets/rownok.jpeg'
 import {AiFillLike} from 'react-icons/ai'
 import {RiEditCircleFill} from 'react-icons/ri'
 import {MdDelete} from 'react-icons/md'
-
+import 'animate.css';
 import {HiOutlineCalendar} from 'react-icons/hi'
 import {IoIosTimer} from 'react-icons/io'
 const BlogDetails = () => {
@@ -153,15 +153,10 @@ const BlogDetails = () => {
         <p>{content}</p>
       </div> */}
 
-      {/* <p>Category : {category}</p>
+      <p>Category : {category}</p>
       <p>Likes :{total_likes}</p>
 
-      {user && user.username === blog.author_name ? (
-        <>
-          <button onClick={handleDelete}>delete blog</button>
-          <button onClick={handleEdit}>edit blog</button>
-        </>
-      ) : null} */}
+     
 
       {/* Like button */}
 {/* 
@@ -194,7 +189,7 @@ const BlogDetails = () => {
 
     
 
-      <div className='container mx-auto  my-10'>
+      <div className='container mx-auto  my-10 animate__animated animate__bounce'>
       <div className="rounded-2xl bg-slate-50 border border-slate-200 relative shadow-md">
         <div className="overflow-hidden rounded-t-2xl relative">
         
@@ -209,7 +204,10 @@ const BlogDetails = () => {
      <div className="flex gap-2 items-center">
       <img className='w-10 h-10 rounded-full' src={rownok} alt="" />
       <p className='text-sm'>{author_name}</p>
-     </div>
+            </div>
+
+
+
      <div className='flex items-center gap-1'>
           <HiOutlineCalendar className='font-semibold text-2xl text-blue-600'/>
           <p className="text-lg">{date_created}</p>
@@ -217,13 +215,22 @@ const BlogDetails = () => {
           <IoIosTimer className='text-purple-600 font-semibold text-2xl ml-4'/>
           <p className="text-lg">{reading_time}</p>
           </div>
-          <div className=" flex justify-between items-center gap-2">
-          <div className="bg-cyan-500 p-3 rounded-2xl hover:scale-95 cursor-pointer">
+          <div className=" flex justify-end items-center gap-2">
+                {user && user.username === blog.author_name ? (
+                  
+        <>
+          <button  onClick={handleEdit} className="bg-cyan-500 p-3 rounded-2xl hover:scale-95 cursor-pointer">
+         
           <RiEditCircleFill className="text-gray-50"/>
-          </div>
-          <div className="bg-red-600 p-3 rounded-2xl hover:scale-95 cursor-pointer">
+          </button>
+           
+          <button onClick={handleDelete} className="bg-red-600 p-3 rounded-2xl hover:scale-95 cursor-pointer">
+       
           <MdDelete className="text-gray-100"/>
-          </div>
+          </button>
+        </>
+      ) : null}
+        
      
         </div>
      </div>
@@ -254,9 +261,9 @@ const BlogDetails = () => {
      </div>
      
       </form>
-      <div className=" flex flex-col gap-3">
+      <div className="flex flex-col gap-3 animate__animated animate__bounceInLeft">
    {comments?.map((comment) => (
-        <Comment className=""
+        <Comment
           key={comment.id}
           comment={comment}
           user={user}
