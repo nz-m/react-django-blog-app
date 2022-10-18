@@ -31,8 +31,8 @@ const Profile = () => {
       <button>
         <Link to="/create">Create Blog</Link>
       </button>
-
-      {blogs.map((blog) => {
+    <div className="grid grid-cols-1 md:grid-cols-2">
+    {blogs.map((blog) => {
         return (
           <Blog
             key={blog.id}
@@ -49,6 +49,8 @@ const Profile = () => {
           />
         );
       })}
+    </div>
+      
     </>
   );
 };

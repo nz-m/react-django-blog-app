@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import rownok from '../Assets/rownok.jpeg'
 import {AiFillLike} from 'react-icons/ai'
+import {FaRegComments} from 'react-icons/fa'
 
 import {HiOutlineCalendar} from 'react-icons/hi'
 import {IoIosTimer} from 'react-icons/io'
@@ -42,10 +43,16 @@ const Blog = (props) => {
      </div>
       <div className="flex flex-col px-4 py-2">
       <div className="flex justify-between items-center">
-      <p className='text-3xl hover:underline transition duration-700 font-semibold cursor-pointer'>{title}</p>
-      <div className="flex items-center gap-1">
+      <p className='text-3xl hover:underline transition duration-700 font-semibold cursor-pointer line-clamp-1'>{title}</p>
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-1">
         <AiFillLike/>
       <p>{total_likes}</p>
+        </div>
+        <div className="flex items-center gap-1">
+        <FaRegComments/>
+      <p>{total_likes}</p>
+        </div>
       </div>
       
       </div>

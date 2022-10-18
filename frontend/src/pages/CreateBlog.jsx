@@ -79,28 +79,58 @@ const CreateBlog = () => {
 
   return (
     <>
-      <pre>{JSON.stringify(category)}</pre>
-      <h1>Create Blog</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value={blog.title}
-          onChange={handleChange}
-        />
-        <label htmlFor="content">Content</label>
-        <textarea
+     
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <div className="w-full bg-slate-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+               Create your Blog 
+              </h1>
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Title
+                  </label>
+                  <input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                    type="text"
+                    name="title"
+                    id="title"
+                    value={blog.title}
+                    onChange={handleChange}
+                    placeholder="Enter your username"
+                    required=""
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Content
+                  </label>
+                
+                      <textarea   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
           name="content"
           id="content"
           cols="30"
-          rows="10"
+          rows="6"
           value={blog.content}
           onChange={handleChange}
         ></textarea>
-        <label htmlFor="category">Category</label>
-        <select
+                </div>
+                <div>
+                  <label
+                    htmlFor="content"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    Category
+                  </label>
+                 
+                        <select className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
           name="category"
           id="category"
           value={blog.category}
@@ -114,10 +144,29 @@ const CreateBlog = () => {
             );
           })}
         </select>
-        <label htmlFor="image">Image</label>
-        <input type="file" name="image" id="image" onChange={handleFile} />
-        <button type="submit">Create Blog</button>
-      </form>
+                </div>
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block mb-2 text-sm font-medium text-gray-900 "
+                  >
+                    File Upload
+                  </label>
+                 
+                  <input className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none" type="file" name="image" id="image" onChange={handleFile} />
+                </div>
+               
+                <button
+                  type="submit"
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+                >
+                  Create BLog
+                </button>
+             
+              </form>
+            </div>
+          </div>
+        </div>
     </>
   );
 };
