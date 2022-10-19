@@ -6,22 +6,37 @@ from autoslug import AutoSlugField
 class Blog(models.Model):
 
     CHOICES = (
-        ('uncategorized', 'uncategorized'),
-        ('technology', 'technology'),
-        ('sports', 'sports'),
-        ('entertainment', 'entertainment'),
-        ('business', 'business'),
-        ('health', 'health'),
-        ('science', 'science'),
-        ('travel', 'travel'),
-        ('food', 'food'),
-        ('fashion', 'fashion'),
-        ('lifestyle', 'lifestyle'),
-        ('education', 'education'),
-        ('music', 'music'),
-        ('photography', 'photography'),
-        ('gaming', 'gaming'),
-        ('movies', 'movies')
+        ('Uncategorized', 'Uncategorized'),
+        ('Technology', 'Technology'),
+        ('Programming', 'Programming'),
+        ('Business', 'Business'),
+        ('Marketing', 'Marketing'),
+        ('Health', 'Health'),
+        ('Travel', 'Travel'),
+        ('Food', 'Food'),
+        ('Fashion', 'Fashion'),
+        ('Sports', 'Sports'),
+        ('Entertainment', 'Entertainment'),
+        ('Lifestyle', 'Lifestyle'),
+        ('Gaming', 'Gaming'),
+        ('Music', 'Music'),
+        ('Movies', 'Movies'),
+        ('TV', 'TV'),
+        ('Books', 'Books'),
+        ('News', 'News'),
+        ('Politics', 'Politics'),
+        ('Science', 'Science'),
+        ('Education', 'Education'),
+        ('Environment', 'Environment'),
+        ('History', 'History'),
+        ('Art', 'Art'),
+        ('Design', 'Design'),
+        ('Photography', 'Photography'),
+        ('Economics', 'Economics'),
+        ('Finance', 'Finance'),
+        ('Law', 'Law'),
+        ('Religion', 'Religion'),
+        ('Philosophy', 'Philosophy'),
     )
 
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
@@ -60,7 +75,7 @@ class Blog(models.Model):
         total_words = len(self.content.split())
         reading_time = round(total_words/200)
         if reading_time == 0:
-            return '< 1 min'
+            return 'less than a minute'
         return str(reading_time) + ' min'
 
     def delete(self, *args, **kwargs):
