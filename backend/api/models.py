@@ -75,9 +75,6 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     username = property(lambda self: self.user.username)
 
-    class Meta:
-        ordering = ['date']
-
     def __str__(self):
         return f'Comment {self.body} by {self.user}'
 
