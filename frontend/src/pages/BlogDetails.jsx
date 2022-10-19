@@ -189,7 +189,7 @@ const BlogDetails = () => {
 
     
 
-      <div className='container mx-auto  my-10 animate__animated animate__bounce'>
+      <div className='container mx-auto  my-10 animate__animated animate__zoomIn'>
       <div className="rounded-2xl bg-slate-50 border border-slate-200 relative shadow-md">
         <div className="overflow-hidden rounded-t-2xl relative">
         
@@ -261,7 +261,7 @@ const BlogDetails = () => {
      </div>
      
       </form>
-      <div className="flex flex-col gap-3 animate__animated animate__bounceInLeft">
+      <div className="flex flex-col gap-3 animate__animated animate__slideInLeft">
    {comments?.map((comment) => (
         <Comment
           key={comment.id}
