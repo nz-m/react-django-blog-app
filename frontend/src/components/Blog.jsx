@@ -24,7 +24,7 @@ const Blog = (props) => {
       <div className='container mx-auto my-10'>
       <div className="rounded-2xl bg-slate-50 relative shadow-lg">
         <div className="overflow-hidden rounded-t-2xl relative">
-        <img className='hover:scale-110 transition duration-500 max-h-80 w-full backdrop-grayscale object-cover ' src={`http://127.0.0.1:8000${image}`} alt="" />
+        <img className='hover:scale-110 transition duration-500 h-60 w-full backdrop-grayscale object-cover ' src={`http://127.0.0.1:8000${image}`} alt="" />
         <p className='absolute top-4 left-4 bg-gradient-to-r from-cyan-500 to-blue-500 px-3 py-1 text-white rounded-3xl cursor-pointer hover:scale-110 transition duration-500'>{category}</p>
         </div>
      <div className="flex justify-between px-4 pt-4">

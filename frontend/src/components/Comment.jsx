@@ -9,7 +9,7 @@ const Comment = ({ comment, handleDeleteComment, user }) => {
   };
 
   return (
-    <div className="bg-slate-50 border border-slate-200 px-6 py-3 rounded-2xl animate__animated animate__bounce">
+    <div className="bg-slate-50 border border-slate-200 px-6 py-3 rounded-2xl animate__animated animate__slideInLeft">
 
 <div className="flex items-start justify-between">
   <div className="flex gap-2">
