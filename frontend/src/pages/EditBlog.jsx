@@ -52,47 +52,78 @@ const EditBlog = () => {
 
   return (
     <>
-      <pre>{JSON.stringify(blogData, null, 2)}</pre>
+   
 
-      <h2>
-        {blogData.title}
-        {blogData.content}
-        {blogData.image}
-      </h2>
-
-      <div>
-        <p>Author : {blogData.author_name}</p>
-
-        <p>Date Added : {blogData.date_created}</p>
-
-        <p>Last Update : {blogData.date_updated}</p>
-        <p> Total likes : {blogData.likes}</p>
-        <p>category {blogData.category}</p>
-      </div>
-
-      <form onSubmit={handleUpdate}>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          value={blogData.title}
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full bg-slate-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+              Create your Blog
+            </h1>
+            <form className="space-y-4 md:space-y-6"  onSubmit={handleUpdate}>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Title
+                </label>
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  value={blogData.title}
           onChange={handleChange}
           name="title"
           id="title"
-        />
-
-        <label htmlFor="content">Content</label>
-        <input
           type="text"
-          value={blogData.content}
-          onChange={handleChange}
-          name="content"
-          id="content"
-        />
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Content
+                </label>
 
-        <label htmlFor="image">Image</label>
-        <input type="file" onChange={handleImage} name="image" id="image" />
-        <button type="submit">Submit</button>
-      </form>
+                <textarea
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                 
+                  cols="30"
+                  rows="6"
+                  value={blogData.content}
+                  onChange={handleChange}
+                  name="content"
+                  id="content"
+                ></textarea>
+              </div>
+             
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  File Upload
+                </label>
+
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  type="file"
+                  name="image"
+                  id="image"
+                  onChange={handleImage}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+              >
+               Save Changes
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
