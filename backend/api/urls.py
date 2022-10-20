@@ -19,8 +19,9 @@ urlpatterns = [
     path('blogs/<int:pk>/addlike/', views.addLike, name="add-like"),
     path('blogs/<int:pk>/removelike/', views.removeLike, name="remove-like"),
 
-    # User registration
+    # User
     path('register/', views.registerUser, name="register"),
+    path('profile/<int:pk>/', views.getProfile, name="getProfile"),
 
     # Authentication
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),

@@ -23,15 +23,20 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 @api_view(['GET'])
 def getBlogs(request):
-    blogs = Blog.objects.all()
-    serializer = BlogSerializer(blogs, many=True)
-    return Response(serializer.data)
+    category = request.GET.get('category', None)
+    if category is not None:
+        blogs = Blog.objects.filter(category=category)
+        serializer = BlogSerializer(blogs, many=True)
+        return Response(serializer.data)
+    else:
+        blogs = Blog.objects.all()
+        serializer = BlogSerializer(blogs, many=True)
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
 def getBlog(request, pk):
     blog = Blog.objects.get(pk=pk)
-    comments = Comment.objects.filter(blog=blog)
     blogSerializer = BlogSerializer(blog, many=False)
     return Response(blogSerializer.data)
 
@@ -148,3 +153,11 @@ def removeLike(request, pk):
     blog.save()
     serializer = BlogSerializer(blog, many=False)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def getProfile(request, pk):
+    user = Profile.objects.get(pk=pk)
+    serializer = ProfileSerializer(user, many=False)
+    return Response(serializer.data)
+
