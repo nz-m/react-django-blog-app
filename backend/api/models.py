@@ -4,7 +4,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Profile(AbstractUser):
-    photo = models.ImageField(upload_to='profile/', blank=True, null=True,default='profile/default.png')
+    photo = models.ImageField(
+        upload_to='profile/', blank=True, null=True, default='profile/default.png')
     bio = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -86,8 +87,8 @@ class Blog(models.Model):
         total_words = len(self.content.split())
         reading_time = round(total_words/200)
         if reading_time == 0:
-            return 'less than a minute'
-        return str(reading_time) + ' min'
+            return '<1 min read'
+        return str(reading_time) + ' min read'
 
     def comment_count(self):
         return Comment.objects.filter(blog=self).count()
