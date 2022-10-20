@@ -1,9 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
-from .models import Blog, Comment
-from .serializers import BlogSerializer, CommentSerializer, UserSerializer, CommentCreateSerializer
-from django.contrib.auth.models import User
+from .models import Blog, Comment, Profile
+from .serializers import BlogSerializer, CommentSerializer, ProfileSerializer, CommentCreateSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
@@ -37,7 +36,6 @@ def getBlog(request, pk):
     return Response(blogSerializer.data)
 
 
-
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def getMyBlogs(request):
@@ -51,7 +49,7 @@ def getMyBlogs(request):
 @permission_classes([IsAuthenticated])
 def createBlog(request):
     data = request.data
-    user = User.objects.get(id=data['author'])
+    user = Profile.objects.get(id=data['author'])
     serializer = BlogSerializer(data=data)
     if serializer.is_valid():
         serializer.save(author=user)
@@ -99,6 +97,7 @@ def createComment(request):
         return Response(commentSerializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['DELETE'])
 @permission_classes([IsAuthenticated])
 def deleteComment(request, pk):
@@ -111,18 +110,18 @@ def deleteComment(request, pk):
 def registerUser(request):
     data = request.data
     try:
-        user = User.objects.create_user(
+        user = Profile.objects.create_user(
             username=data['username'],
             email=data['email'],
             password=data['password'],
-            first_name=data['first_name'],
-            last_name=data['last_name']
+            photo=data['photo'],
+            bio=data['bio']
         )
-        serializer = UserSerializer(user, many=False)
+        serializer = ProfileSerializer(user, many=False)
         return Response(serializer.data)
 
     except:
-        message = {'detail': 'User with this username already exists'}
+        message = {'detail': 'Profile with this username already exists'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 

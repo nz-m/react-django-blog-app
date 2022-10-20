@@ -1,6 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
 from autoslug import AutoSlugField
+from django.contrib.auth.models import AbstractUser
+
+
+class Profile(AbstractUser):
+    photo = models.ImageField(upload_to='profile/', blank=True, null=True,default='profile/default.png')
+    bio = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.username
 
 
 class Blog(models.Model):
@@ -39,7 +47,7 @@ class Blog(models.Model):
         ('Philosophy', 'Philosophy'),
     )
 
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    author = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=100)
     slug = AutoSlugField(populate_from='title', unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -50,8 +58,11 @@ class Blog(models.Model):
         max_length=100, default='uncategorized', choices=CHOICES)
     publish_status = models.BooleanField(default=True, choices=(
         (True, 'Published'), (False, 'Draft')))
-    likes = models.ManyToManyField(User, related_name='blog_posts', blank=True)
+    likes = models.ManyToManyField(
+        Profile, related_name='blog_posts', blank=True)
     author_name = property(lambda self: self.author.username)
+    author_photo = property(lambda self: self.author.photo.url)
+    author_bio = property(lambda self: self.author.bio)
 
     class Meta:
         ordering = ['-created_at']
@@ -78,6 +89,9 @@ class Blog(models.Model):
             return 'less than a minute'
         return str(reading_time) + ' min'
 
+    def comment_count(self):
+        return Comment.objects.filter(blog=self).count()
+
     def delete(self, *args, **kwargs):
         self.image.delete()
         super().delete(*args, **kwargs)
@@ -85,7 +99,7 @@ class Blog(models.Model):
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     username = property(lambda self: self.user.username)

@@ -12,11 +12,14 @@ urlpatterns = [
     path('blogs/myblogs/', views.getMyBlogs, name="myblogs"),
     path('blogs/create/', views.createBlog, name="create-blog"),
     path('blogs/<int:pk>/comments/', views.getComments, name="comments"),
+
+    # Like Comments
     path('comments/create/', views.createComment, name="create-comment"),
     path('comments/<int:pk>/delete/', views.deleteComment, name="delete-comment"),
-    #addlike and removelike
     path('blogs/<int:pk>/addlike/', views.addLike, name="add-like"),
     path('blogs/<int:pk>/removelike/', views.removeLike, name="remove-like"),
+
+    # User registration
     path('register/', views.registerUser, name="register"),
 
     # Authentication
@@ -24,6 +27,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # Blog Categories
-    path('blogs/category/', views.getCategory, name="category")
+    path('blogs/category/', views.getCategory, name="category"),
 
 ]

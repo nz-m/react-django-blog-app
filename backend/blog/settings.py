@@ -54,7 +54,7 @@ REST_FRAMEWORK = {
     )
 
 }
-
+AUTH_USER_MODEL = 'api.Profile'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
