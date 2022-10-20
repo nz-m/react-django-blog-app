@@ -104,6 +104,7 @@ class Comment(models.Model):
     body = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     username = property(lambda self: self.user.username)
+    user_photo = property(lambda self: self.user.photo.url)
 
     def __str__(self):
         return f'Comment {self.body} by {self.user}'

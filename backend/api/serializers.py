@@ -35,7 +35,8 @@ class CommentSerializer(ModelSerializer):
             'id',
             'username',
             'body',
-            'date_format'
+            'date_format',
+            'user_photo'
         ]
 
 
