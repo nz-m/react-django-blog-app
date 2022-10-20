@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap");
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -11,36 +11,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.blog-title {
+  font-family: "Lora", serif;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-/* input border */
-/* input {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-} */
-/*  button style */
-/* button {
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-} */
-/* 
-button[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-} */

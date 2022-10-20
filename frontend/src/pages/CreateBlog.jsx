@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const CreateBlog = () => {
-  const URL = "http://127.0.0.1:8000/api/blogs/create/";
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const URL = `${BASE_URL}/api/blogs/create/`;
+
   const navigate = useNavigate();
   const [category, setCategory] = useState({});
 
@@ -20,15 +22,14 @@ const CreateBlog = () => {
   useEffect(() => {
     const getCategory = () => {
       const fetchCategory = async () => {
-        const response = await fetch(
-          "http://127.0.0.1:8000/api/blogs/category/"
-        );
+        const response = await fetch(`${BASE_URL}/api/blogs/category/`);
         const data = await response.json();
         setCategory(data);
       };
       fetchCategory();
     };
     getCategory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const categoryArray = Object.entries(category);
@@ -73,7 +74,7 @@ const CreateBlog = () => {
         navigate("/profile");
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
       });
   };
 
@@ -83,12 +84,12 @@ const CreateBlog = () => {
         <div className="w-full bg-slate-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-              Create your Blog
+              Create a blog
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="title"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Title
@@ -100,13 +101,13 @@ const CreateBlog = () => {
                   id="title"
                   value={blog.title}
                   onChange={handleChange}
-                  placeholder="Enter your username"
-                  required=""
+                  placeholder="Title of your blog"
+                  required
                 />
               </div>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="content"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Content
@@ -124,7 +125,7 @@ const CreateBlog = () => {
               </div>
               <div>
                 <label
-                  htmlFor="content"
+                  htmlFor="category"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Category
@@ -167,7 +168,7 @@ const CreateBlog = () => {
                 type="submit"
                 className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
               >
-                Create BLog
+                Create Blog
               </button>
             </form>
           </div>

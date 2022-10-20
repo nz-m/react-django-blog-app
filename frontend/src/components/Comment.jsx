@@ -1,9 +1,8 @@
 import React, { memo } from "react";
-import rownok from "../Assets/rownok.jpeg";
 import { AiOutlineDeleteRow } from "react-icons/ai";
 const Comment = ({ comment, handleDeleteComment, user }) => {
-  const { body, username, date_format } = comment || {};
-
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const { body, username, date_format, user_photo } = comment || {};
   const handleDelete = () => {
     handleDeleteComment(comment.id);
   };
@@ -14,7 +13,7 @@ const Comment = ({ comment, handleDeleteComment, user }) => {
         <div className="flex gap-2">
           <img
             className="w-10 h-10 rounded-full object-cover mt-2"
-            src={rownok}
+            src={`${BASE_URL}${user_photo}`}
             alt=""
           />
           <div className="flex flex-col -space-y-1">

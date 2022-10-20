@@ -3,12 +3,12 @@ import Blog from "../components/Blog";
 import { GetContent } from "../services/GetContent";
 import Loader from "../components/Loader";
 
-const Technology = () => {
+const Education = () => {
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
   useEffect(() => {
     setLoading(true);
-    GetContent.fetchAllBlogsByCategory("Technology").then((data) => {
+    GetContent.fetchAllBlogsByCategory("Education").then((data) => {
       data ? setBlogs(data) : setBlogs([]);
       setLoading(false);
     });
@@ -45,11 +45,11 @@ const Technology = () => {
             );
           })
         ) : (
-          <span>Sorry, no blog entries found for technology category!</span>
+          <span>Sorry, no blog entries found for education category!</span>
         )}
       </div>
     </>
   );
 };
 
-export default Technology;
+export default Education;

@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from "react";
 import Blog from "../components/Blog";
-import axios from "axios";
+import { GetContent } from "../services/GetContent";
+import Loader from "../components/Loader";
 const Home = () => {
-  const URL = "http://127.0.0.1:8000/api/blogs/";
-
+  const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
-
   useEffect(() => {
-    const getBlogs = async () => {
-      const response = await axios.get(URL);
-      const data = await response.data;
+    setLoading(true);
+    GetContent.fetchAllBlogs().then((data) => {
       setBlogs(data);
-    };
-    getBlogs();
+      setLoading(false);
+    });
   }, []);
+
   return (
-    <div className="grid grid-cols-2">
-
-
-      {blogs.map((blog) => {
-        return (
-       
-   <Blog 
-            key={blog.id}
-            id={blog.id}
-            title={blog.title}
-            content={blog.content}
-            author_name={blog.author_name}
-            date_created={blog.date_created}
-            date_updated={blog.date_updated}
-            image={blog.image}
-            category={blog.category}
-            total_likes={blog.total_likes}
-            likes={blog.likes}
-            reading_time={blog.reading_time}
-          />
-      
-       
-        );
-      })}
-    </div>
+    <>
+      {loading && (
+        <div className="w-screen h-screen flex justify-center items-center">
+          <Loader type={"bubbles"} color={"deepskyblue"} />
+        </div>
+      )}
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        {blogs.map((blog) => {
+          return (
+            <Blog
+              key={blog.id}
+              id={blog.id}
+              title={blog.title}
+              content={blog.content}
+              author_name={blog.author_name}
+              author_bio={blog.author_bio}
+              author_photo={blog.author_photo}
+              date_created={blog.date_created}
+              date_updated={blog.date_updated}
+              image={blog.image}
+              category={blog.category}
+              total_likes={blog.total_likes}
+              likes={blog.likes}
+              reading_time={blog.reading_time}
+              comment_count={blog.comment_count}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 };
 
