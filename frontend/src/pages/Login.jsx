@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const Login = () => {
-  const { userLogin } = useContext(AuthContext);
+  const { userLogin, errMessage } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,7 +19,8 @@ const Login = () => {
   return (
     <>
       <section>
-        <h1>{message}</h1>
+        {message && <h1 className="text-white">{message}</h1>}
+        {errMessage && <h1 className="text-white">{errMessage}</h1>}
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
