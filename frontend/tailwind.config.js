@@ -38,28 +38,43 @@ module.exports = {
           300: "#2e2e2e",
         },
         primary: {
-          DEFAULT: "#DA1E37",
-          50: "#F7C6C6",
-          100: "#F5B4B4",
-          200: "#F09090",
-          300: "#EC6C6C",
-          400: "#E74848",
-          500: "#DA1E37",
-          600: "#B61818",
-          700: "#841212",
-          800: "#530B0B",
-          900: "#210404",
+          DEFAULT: "#3ABFF8",
+          secondary: "#828DF8",
+          accent: "#F471B5",
+          neutral: "#1D283A",
+          info: "#0CA6E9",
+          success: "#2BD4BD",
+          warning: "#F4C152",
+          error: "#FB6F84",
+          base: "#0F1729",
+         
         },
+      
       },
     },
   },
   daisyui: {
     themes: [
       {
-        light: {
-          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
-          primary: "#DA1E37",
-          "primary-focus": "#E74848",
+        mytheme: {
+        
+"primary": "#3ABFF8",
+        
+"secondary": "#828DF8",
+        
+"accent": "#F471B5",
+        
+"neutral": "#1D283A",
+        
+"base-100": "#0F1729",
+        
+"info": "#0CA6E9",
+        
+"success": "#2BD4BD",
+        
+"warning": "#F4C152",
+        
+"error": "#FB6F84",
         },
       },
     ],

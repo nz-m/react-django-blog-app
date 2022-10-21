@@ -62,9 +62,9 @@ const SignUp = () => {
       {message ? message : null}
 
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-gray-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 ">
+        <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+            <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
               Create an account
             </h1>
             <form
@@ -74,12 +74,12 @@ const SignUp = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
+                  className="block mb-2 text-sm font-medium  "
                 >
                   Username <span className="text-red-500 font-bold">* </span>
                 </label>
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   type="text"
                   name="username"
                   id="username"
@@ -92,12 +92,12 @@ const SignUp = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
+                  className="block mb-2 text-sm font-medium  "
                 >
                   Email (optional)
                 </label>
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   type="email"
                   name="email"
                   id="email"
@@ -109,7 +109,7 @@ const SignUp = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-medium "
                 >
                   Password
                   <span className="text-red-500 font-bold"> * </span>
@@ -121,7 +121,7 @@ const SignUp = () => {
                   placeholder="Enter your password"
                   value={user.password}
                   onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   required
                 />
               </div>
@@ -129,7 +129,7 @@ const SignUp = () => {
               <div>
                 <label
                   htmlFor="bio"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-medium "
                 >
                   Bio (optional)
                 </label>
@@ -138,12 +138,12 @@ const SignUp = () => {
                   id="bio"
                   value={user.bio}
                   onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                 />
 
                 <label
                   htmlFor="photo"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-medium "
                 >
                   Photo (optional)
                 </label>
@@ -153,7 +153,7 @@ const SignUp = () => {
                   name="photo"
                   id="photo"
                   onChange={handlePhotoChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                 />
               </div>
               <button

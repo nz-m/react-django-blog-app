@@ -173,7 +173,7 @@ const BlogDetails = () => {
       )}
       {!loading && (
         <div className="container mx-auto  my-10 animate__animated animate__fadeIn">
-          <div className="rounded-2xl bg-slate-50 border border-slate-200 relative shadow-md">
+          <div className="rounded-2xl bg-primary-neutral border border-primary-base  relative shadow-2xl">
             <div className="overflow-hidden rounded-t-2xl relative">
               <img
                 className=" h-[500px] w-full object-cover "
@@ -185,7 +185,7 @@ const BlogDetails = () => {
                 {category}
               </p>
             </div>
-            <div className="flex justify-between px-10 pt-4">
+            <div className="flex flex-wrap md:justify-between px-2 md:px-10 pt-4">
               <div className="flex gap-2 items-center">
                 <img
                   className="w-10 h-10 rounded-full"
@@ -196,25 +196,25 @@ const BlogDetails = () => {
               </div>
 
               <div className="flex items-center gap-1">
-                <HiOutlineCalendar className="font-semibold text-2xl text-blue-600" />
-                <p className="text-lg">{date_created}</p>
+                <HiOutlineCalendar className="font-semibold md:text-2xl text-blue-600" />
+                <p className="text-xs md:text-lg">{date_created}</p>
 
-                <IoIosTimer className="text-purple-600 font-semibold text-2xl ml-4" />
-                <p className="text-lg">{reading_time}</p>
+                <IoIosTimer className="text-purple-600 font-semibold md:text-2xl ml-4" />
+                <p className="text-xs md:text-lg">{reading_time}</p>
               </div>
-              <div className=" flex justify-end items-center gap-2">
+              <div className=" flex justify-end items-center gap-2 px-2">
                 {user && user.username === blog.author_name ? (
                   <>
                     <button
                       onClick={handleEdit}
-                      className="bg-cyan-500 p-3 rounded-2xl hover:scale-95 cursor-pointer"
+                      className="bg-primary-info p-3 rounded-2xl hover:scale-95 cursor-pointer"
                     >
                       <RiEditCircleFill className="text-gray-50" />
                     </button>
 
                     <button
                       onClick={handleDelete}
-                      className="bg-red-600 p-3 rounded-2xl hover:scale-95 cursor-pointer"
+                      className="bg-primary-error p-3 rounded-2xl hover:scale-95 cursor-pointer"
                     >
                       <MdDelete className="text-gray-100" />
                     </button>
@@ -222,9 +222,9 @@ const BlogDetails = () => {
                 ) : null}
               </div>
             </div>
-            <div className="flex flex-col px-10 py-2">
+            <div className="flex flex-col px-2 md:px-10 py-2">
               <div className="flex justify-between items-center">
-                <p className="text-2xl blog-title font-bold">
+                <p className="text-lg md:text-2xl  font-bold line-clamp-2">
                   {title}
                 </p>
                 <LikeBtn
@@ -237,7 +237,7 @@ const BlogDetails = () => {
                 />
               </div>
 
-              <div className="flex gap-1 justify-center items-center">
+              <div className="flex gap-1 items-center">
                 <p className="text-lg text-justify py-4">{content}</p>
               </div>
             </div>
@@ -245,16 +245,16 @@ const BlogDetails = () => {
           <h2 className="font-semibold text-xl mt-5 mb-2">Comment</h2>
           <form onSubmit={handleSubmitComment}>
             <input
-              className="bg-slate-50 border border-slate-200 w-full rounded-2xl p-3 focus:outline-gray-300"
+              className="bg-primary-neutral border border-slate-600 w-full rounded-2xl p-3 focus:outline-primary"
               type="text"
               placeholder="Write your thought..."
               value={comment}
               onChange={handleChangeComment}
               required
             />
-            <div className="flex justify-end">
-              <button className="btn btn-accent text-white mb-5" type="submit">
-                Done
+            <div className="flex justify-end  mt-5">
+              <button className="btn btn-success text-white mb-5" type="submit">
+                Submit
               </button>
             </div>
           </form>
