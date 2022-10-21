@@ -76,7 +76,7 @@ const Profile = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center">
+        <div className="flex flex-wrap md:flex-nowrap justify-around items-center">
           <div className="space-y-5">
             <p className="text-4xl font-semibold">
               Hi! <span className="text-primary">{profile.username}.</span>{" "}
@@ -100,7 +100,7 @@ const Profile = () => {
               )}
             </p>
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
+              className="btn btn-sm bg-blue-500 text-white capitalize"
               to="/create"
             >
               {" "}
@@ -108,7 +108,7 @@ const Profile = () => {
             </button>
           </div>
           <img
-            className="max-w-lg rounded-full"
+            className="max-w-md  rounded-full"
             src={`${BASE_URL}${profile.photo}`}
             alt=""
           />

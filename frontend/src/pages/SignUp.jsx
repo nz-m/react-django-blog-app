@@ -60,7 +60,7 @@ const SignUp = () => {
 
   return (
     <>
-      {message ? message : null}
+     
 
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 ">
@@ -125,6 +125,7 @@ const SignUp = () => {
                   className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   required
                 />
+                 {message ? message : null}
               </div>
 
               <div>
@@ -163,7 +164,7 @@ const SignUp = () => {
               >
                 Sign Up
               </button>
-              <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <p className="text-sm font-light text-gray-300 ">
                 Have an account already?{" "}
                 <Link
                   to={"/signup"}

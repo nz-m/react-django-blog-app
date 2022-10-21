@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Blog from "../components/Blog";
 import { GetContent } from "../services/GetContent";
 import Loader from "../components/Loader";
-
+import blog from '../Assets/blog.png'
 const Technology = () => {
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
@@ -28,7 +28,7 @@ const Technology = () => {
           <Loader type={"bubbles"} color={"deepskyblue"} />
         </div>
       )}
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
         {blogs.length > 0 ? (
           blogs.map((blog) => {
             return (
@@ -49,10 +49,17 @@ const Technology = () => {
                 reading_time={blog.reading_time}
                 comment_count={blog.comment_count}
               />
+              
             );
           })
-        ) : (
-          <span>Sorry, no blog entries found for technology category!</span>
+        )
+         : (
+        <>
+          <div className="">
+            <p className="text-5xl font-semibold text-center ">Sorry, no blog entries found for <span className="text-primary">Technology</span> category!</p>
+          </div>
+          <img src={blog} alt="" />
+        </>
         )}
       </div>
     </>
