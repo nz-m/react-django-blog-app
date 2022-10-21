@@ -11,6 +11,8 @@ import { HiOutlineCalendar } from "react-icons/hi";
 import { IoIosTimer } from "react-icons/io";
 import LikeBtn from "../components/LikeBtn";
 import Loader from "../components/Loader";
+import ReactQuill from "react-quill";
+import 'react-quill/dist/quill.bubble.css';
 
 const BlogDetails = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -224,9 +226,7 @@ const BlogDetails = () => {
             </div>
             <div className="flex flex-col px-10 py-2">
               <div className="flex justify-between items-center">
-                <p className="text-2xl blog-title font-bold">
-                  {title}
-                </p>
+                <p className="text-2xl blog-title font-bold">{title}</p>
                 <LikeBtn
                   total_likes={total_likes}
                   handleLike={handleLike}
@@ -237,8 +237,8 @@ const BlogDetails = () => {
                 />
               </div>
 
-              <div className="flex gap-1 justify-center items-center">
-                <p className="text-lg text-justify py-4">{content}</p>
+              <div>
+                <ReactQuill value={content} readOnly={true} theme={"bubble"} />
               </div>
             </div>
           </div>

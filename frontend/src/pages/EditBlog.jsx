@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
+import ReactQuill from "react-quill";
+import FileValidation from "../services/FileValidation";
+import "react-quill/dist/quill.snow.css";
 
 const EditBlog = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -12,14 +15,25 @@ const EditBlog = () => {
   const { authToken } = useContext(AuthContext);
 
   const [blogData, setBlogData] = useState(blog);
+  const [value, setValue] = useState(blog.content);
   const [imageUpdate, setImageUpdate] = useState(null);
+  const [message, setMessage] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBlogData({ ...blogData, [name]: value });
   };
-  const handleImage = (e) => {
-    setImageUpdate(e.target.files[0]);
+
+  const handleEditorChange = (value) => {
+    setValue(value);
+    setBlogData({ ...blogData, content: value });
   };
+
+  const handleImage = (e) => {
+    const { files } = e.target;
+    FileValidation(files, setMessage, e);
+    setImageUpdate(files[0]);
+  };
+  
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -48,6 +62,9 @@ const EditBlog = () => {
 
   return (
     <>
+      <div>
+        {message && <p>{message}</p>}
+      </div>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-slate-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -73,13 +90,13 @@ const EditBlog = () => {
               </div>
               <div>
                 <label
-                  htmlFor="email"
+                  htmlFor="content"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Content
                 </label>
 
-                <textarea
+                {/* <textarea
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
                   cols="30"
                   rows="6"
@@ -87,7 +104,13 @@ const EditBlog = () => {
                   onChange={handleChange}
                   name="content"
                   id="content"
-                ></textarea>
+                ></textarea> */}
+
+                <ReactQuill
+                  theme="snow"
+                  value={value}
+                  onChange={handleEditorChange}
+                />
               </div>
 
               <div>

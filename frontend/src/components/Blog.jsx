@@ -4,6 +4,8 @@ import { AiFillLike } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa";
 import { HiOutlineCalendar } from "react-icons/hi";
 import { IoIosTimer } from "react-icons/io";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
 const Blog = (props) => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const {
@@ -67,8 +69,12 @@ const Blog = (props) => {
             </div>
           </div>
 
-          <div className="flex gap-1 justify-center items-center ">
-            <p className="line-clamp-2 mb-4">{content}</p>
+          <div>
+            <ReactQuill
+              value={content.slice(0, 100).concat("...")}
+              readOnly={true}
+              theme={"bubble"}
+            />
           </div>
         </div>
         <div className="btn btn-sm absolute -bottom-4 left-1/3 bg-gradient-to-r from-cyan-500 to-blue-500 border-none hover:scale-95">

@@ -1,17 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import FileValidation from "../services/FileValidation";
 
 const CreateBlog = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const URL = `${BASE_URL}/api/blogs/create/`;
-  const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
   const [category, setCategory] = useState({});
-  const [value, setValue] = useState("");
+
   const { user, authToken } = useContext(AuthContext);
 
   const [blog, setBlog] = useState({
@@ -47,19 +44,8 @@ const CreateBlog = () => {
     });
   };
 
-  const handleEditorChange = (value) => {
-    setValue(value);
-    setBlog((prev) => {
-      return {
-        ...prev,
-        content: value,
-      };
-    });
-  };
-
   const handleFile = (e) => {
     const { name, files } = e.target;
-    FileValidation(files, setMessage, e);
     setBlog((prev) => {
       return {
         ...prev,
@@ -86,14 +72,14 @@ const CreateBlog = () => {
       .then((response) => response.json())
       .then((data) => {
         navigate("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
   return (
     <>
-      <div>
-        {message && <div className="alert alert-danger">{message}</div>}
-      </div>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-slate-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -126,11 +112,16 @@ const CreateBlog = () => {
                 >
                   Content
                 </label>
-                <ReactQuill
-                  theme="snow"
-                  value={value}
-                  onChange={handleEditorChange}
-                />
+
+                <textarea
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  name="content"
+                  id="content"
+                  cols="30"
+                  rows="6"
+                  value={blog.content}
+                  onChange={handleChange}
+                ></textarea>
               </div>
               <div>
                 <label
