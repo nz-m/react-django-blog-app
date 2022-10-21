@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import createblog from '../Assets/createblog.png'
+// import createblog from "../Assets/createblog.png";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import FileValidation from "../services/FileValidation";
@@ -91,9 +91,10 @@ const CreateBlog = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+    <div className="items-center">
+      {message && <div className="error">{message}</div>}
       <div className="flex flex-col items-center justify-center  md:h-screen lg:py-0">
-        <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+        <div className="w-full bg-slate-100  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
               Create a blog
@@ -107,7 +108,7 @@ const CreateBlog = () => {
                   Title
                 </label>
                 <input
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-slate-100 sm:text-sm rounded-lg focus:ring-primary block w-full p-2.5 focus:outline-none"
                   type="text"
                   name="title"
                   id="title"
@@ -139,7 +140,7 @@ const CreateBlog = () => {
                 </label>
 
                 <select
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-slate-100 shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   name="category"
                   id="category"
                   value={blog.category}
@@ -163,7 +164,7 @@ const CreateBlog = () => {
                 </label>
 
                 <input
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-slate-100 sm:text-sm rounded-sm focus:ring-primary  block w-full p-2.5"
                   type="file"
                   name="image"
                   id="image"
@@ -180,9 +181,6 @@ const CreateBlog = () => {
             </form>
           </div>
         </div>
-      </div>
-      <div>
-        <img className="w-full" src={createblog} alt="" />
       </div>
     </div>
   );

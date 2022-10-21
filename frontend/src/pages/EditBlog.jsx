@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
-import editblog from "../Assets/editblog.png";
 import ReactQuill from "react-quill";
 import FileValidation from "../services/FileValidation";
 import "react-quill/dist/quill.snow.css";
@@ -61,9 +60,11 @@ const EditBlog = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-      <div className="flex flex-col items-center justify-center  py-8  md:h-screen lg:py-0">
-        <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+    
+    <div className="flex flex-col items-center justify-center py-8 lg:py-0 my-8">
+      {message && <div className="error" style={{color:"white"}}>{message}</div>}
+      
+        <div className="w-full bg-slate-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
               Edit your Blog
@@ -77,7 +78,7 @@ const EditBlog = () => {
                   Title
                 </label>
                 <input
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-slate-100 shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   value={blogData.title}
                   onChange={handleChange}
                   name="title"
@@ -92,16 +93,6 @@ const EditBlog = () => {
                 >
                   Content
                 </label>
-
-                <textarea
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
-                  cols="30"
-                  rows="6"
-                  value={blogData.content}
-                  onChange={handleChange}
-                  name="content"
-                  id="content"
-                ></textarea>
 
                 <ReactQuill
                   theme="snow"
@@ -119,7 +110,7 @@ const EditBlog = () => {
                 </label>
 
                 <input
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-slate-100 shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   type="file"
                   name="image"
                   id="image"
@@ -137,7 +128,6 @@ const EditBlog = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

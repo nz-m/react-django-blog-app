@@ -64,11 +64,17 @@ const Profile = () => {
     return (
       <>
         {loading && (
-          <div className="w-screen h-screen flex justify-center items-center">
-            <Loader type={"bubbles"} color={"deepskyblue"} />
-          </div>
-        )}
-   
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80vh",
+          }}
+        >
+          <Loader type={"bubbles"} color={"deepskyblue"} />
+        </div>
+      )}
     
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center">
           <div className="space-y-5">

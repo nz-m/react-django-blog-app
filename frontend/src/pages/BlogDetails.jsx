@@ -22,7 +22,7 @@ const BlogDetails = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState({});
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -169,7 +169,14 @@ const BlogDetails = () => {
   return (
     <>
       {loading && (
-        <div className="w-screen h-screen flex justify-center items-center">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80vh",
+          }}
+        >
           <Loader type={"bubbles"} color={"deepskyblue"} />
         </div>
       )}
@@ -245,16 +252,16 @@ const BlogDetails = () => {
           <h2 className="font-semibold text-xl mt-5 mb-2">Comment</h2>
           <form onSubmit={handleSubmitComment}>
             <input
-              className="bg-primary-neutral border border-slate-600 w-full rounded-2xl p-3 focus:outline-primary"
+              className="bg-primary-neutral border border-slate-600 w-full rounded p-3 focus:outline-primary"
               type="text"
               placeholder="Write your thought..."
               value={comment}
               onChange={handleChangeComment}
               required
             />
-            <div className="flex justify-end  mt-5">
-              <button className="btn btn-success text-white mb-5" type="submit">
-                Submit
+            <div className="flex justify-end mt-5">
+              <button className="btn btn-sm btn-primary text-white mb-5" type="submit">
+                Comment
               </button>
             </div>
           </form>

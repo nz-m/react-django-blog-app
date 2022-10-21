@@ -16,8 +16,15 @@ const Music = () => {
 
   return (
     <>
-      {loading && (
-        <div className="w-screen h-screen flex justify-center items-center">
+  {loading && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "80vh",
+          }}
+        >
           <Loader type={"bubbles"} color={"deepskyblue"} />
         </div>
       )}
