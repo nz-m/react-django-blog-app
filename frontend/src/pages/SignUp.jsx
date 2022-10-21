@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import FileValidation from "../services/FileValidation";
 const SignUp = () => {
   const nagivate = useNavigate();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -26,6 +26,7 @@ const SignUp = () => {
   };
   const handlePhotoChange = (e) => {
     const { name, files } = e.target;
+    FileValidation(files, setMessage, e);
     setUser((prev) => {
       return {
         ...prev,

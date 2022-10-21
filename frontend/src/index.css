@@ -19,3 +19,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+/*  add style to Slate text box */
+.slate-editor {
+  min-height: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: "Lora", serif;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}

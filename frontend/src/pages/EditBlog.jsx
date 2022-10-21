@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
-import editblog from '../Assets/editblog.png'
+import editblog from "../Assets/editblog.png";
+import ReactQuill from "react-quill";
+import FileValidation from "../services/FileValidation";
+import "react-quill/dist/quill.snow.css";
+
 const EditBlog = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
@@ -12,13 +16,23 @@ const EditBlog = () => {
   const { authToken } = useContext(AuthContext);
 
   const [blogData, setBlogData] = useState(blog);
+  const [value, setValue] = useState(blog.content);
   const [imageUpdate, setImageUpdate] = useState(null);
+  const [message, setMessage] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBlogData({ ...blogData, [name]: value });
   };
+
+  const handleEditorChange = (value) => {
+    setValue(value);
+    setBlogData({ ...blogData, content: value });
+  };
+
   const handleImage = (e) => {
-    setImageUpdate(e.target.files[0]);
+    const { files } = e.target;
+    FileValidation(files, setMessage, e);
+    setImageUpdate(files[0]);
   };
 
   const handleUpdate = async (e) => {
@@ -73,8 +87,8 @@ const EditBlog = () => {
               </div>
               <div>
                 <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium  "
+                  htmlFor="content"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Content
                 </label>
@@ -88,6 +102,12 @@ const EditBlog = () => {
                   name="content"
                   id="content"
                 ></textarea>
+
+                <ReactQuill
+                  theme="snow"
+                  value={value}
+                  onChange={handleEditorChange}
+                />
               </div>
 
               <div>
@@ -117,7 +137,6 @@ const EditBlog = () => {
           </div>
         </div>
       </div>
-     
     </div>
   );
 };

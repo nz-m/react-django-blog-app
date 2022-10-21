@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import createblog from '../Assets/createblog.png'
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import FileValidation from "../services/FileValidation";
 
 const CreateBlog = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const URL = `${BASE_URL}/api/blogs/create/`;
-  const [message, setMessage] = useState("");
+
   const navigate = useNavigate();
   const [category, setCategory] = useState({});
-  const [value, setValue] = useState("");
+
   const { user, authToken } = useContext(AuthContext);
 
   const [blog, setBlog] = useState({
@@ -48,19 +44,8 @@ const CreateBlog = () => {
     });
   };
 
-  const handleEditorChange = (value) => {
-    setValue(value);
-    setBlog((prev) => {
-      return {
-        ...prev,
-        content: value,
-      };
-    });
-  };
-
   const handleFile = (e) => {
     const { name, files } = e.target;
-    FileValidation(files, setMessage, e);
     setBlog((prev) => {
       return {
         ...prev,
@@ -87,27 +72,30 @@ const CreateBlog = () => {
       .then((response) => response.json())
       .then((data) => {
         navigate("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-      <div className="flex flex-col items-center justify-center  md:h-screen lg:py-0">
-        <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+    <>
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div className="w-full bg-slate-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
               Create a blog
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="title"
-                  className="block mb-2 text-sm font-medium  "
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Title
                 </label>
                 <input
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
                   type="text"
                   name="title"
                   id="title"
@@ -120,26 +108,31 @@ const CreateBlog = () => {
               <div>
                 <label
                   htmlFor="content"
-                  className="block mb-2 text-sm font-medium  "
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Content
                 </label>
-                <ReactQuill
-                  theme="snow"
-                  value={value}
-                  onChange={handleEditorChange}
-                />
+
+                <textarea
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  name="content"
+                  id="content"
+                  cols="30"
+                  rows="6"
+                  value={blog.content}
+                  onChange={handleChange}
+                ></textarea>
               </div>
               <div>
                 <label
                   htmlFor="category"
-                  className="block mb-2 text-sm font-medium  "
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   Category
                 </label>
 
                 <select
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
                   name="category"
                   id="category"
                   value={blog.category}
@@ -157,13 +150,13 @@ const CreateBlog = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium  "
+                  className="block mb-2 text-sm font-medium text-gray-900 "
                 >
                   File Upload
                 </label>
 
                 <input
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
                   type="file"
                   name="image"
                   id="image"
@@ -181,10 +174,7 @@ const CreateBlog = () => {
           </div>
         </div>
       </div>
-      <div>
-        <img className="w-full" src={createblog} alt="" />
-      </div>
-    </div>
+    </>
   );
 };
 
