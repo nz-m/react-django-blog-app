@@ -68,51 +68,29 @@ const Profile = () => {
             <Loader type={"bubbles"} color={"deepskyblue"} />
           </div>
         )}
-        <div>
-          {/* create a card with user info and picture */}
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="row">
-                      <div className="col-md-4">
-                        <img
-                          src={`${BASE_URL}${profile.photo}`}
-                          alt="user"
-                          className="img-fluid rounded-circle"
-                        />
-
-                        <h3 className="text-center">
-                          User name : {profile.username}
-                        </h3>
-
-                        <p className="text-center">
-                          <button
-                            onClick={() => {
-                              window.scrollTo({
-                                top: 1000,
-                                behavior: "smooth",
-                              });
-                            }}
-                            className="btn btn-primary btn-block"
-                          >
-                            My blogs
-                          </button>
-                        </p>
-                      </div>
-                      <div className="col-md-8">
-                        <h3 className="text-center">About Me</h3>
-                        <p className="text-center">{profile.bio}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+   
+    
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center">
+          <div className="space-y-5">
+            <p className="text-6xl font-semibold">
+              Welcome <span className="text-primary">{profile.username} </span> to Dashboard
+            </p>
+            <p className="text-lg">
+              You can create multiple blog with multiple category so now let's
+              get started
+            </p>
+            <button className="btn bg-cyan-500 border-none mt-5" to="/create">
+              {" "}
+              <Link to="/create">Create Blog</Link>
+            </button>
           </div>
+          <img
+            className="max-w-lg rounded-full"
+            src={`${BASE_URL}${profile.photo}`}
+            alt=""
+          />
         </div>
-
+        <p className="text-4xl font-bold text-center blog-title my-10">My Blog</p>
         <div className="grid grid-cols-1 md:grid-cols-2">
           {blogs.map((blog) => {
             return (
@@ -134,26 +112,6 @@ const Profile = () => {
               />
             );
           })}
-        </div>
-        <div className="flex justify-between items-center gap-5 h-screen">
-          <div className="space-y-5">
-            <p className="text-6xl font-semibold">
-              Create your blog from blogger
-            </p>
-            <p className="text-lg">
-              You can create multiple blog with multiple category so now let's
-              get started
-            </p>
-            <button className="btn bg-cyan-500 border-none mt-5" to="/create">
-              {" "}
-              <Link to="/create">Create Blog</Link>
-            </button>
-          </div>
-          <img
-            className="max-w-xl"
-            src={`${BASE_URL}${profile.photo}`}
-            alt=""
-          />
         </div>
       </>
     );

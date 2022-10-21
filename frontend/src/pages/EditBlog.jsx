@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
-
+import editblog from '../Assets/editblog.png'
 const EditBlog = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
@@ -47,23 +47,23 @@ const EditBlog = () => {
   };
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-slate-50  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+    <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+      <div className="flex flex-col items-center justify-center  py-8  md:h-screen lg:py-0">
+        <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-              Create your Blog
+            <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
+              Edit your Blog
             </h1>
             <form className="space-y-4 md:space-y-6" onSubmit={handleUpdate}>
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
+                  className="block mb-2 text-sm font-medium  "
                 >
                   Title
                 </label>
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   value={blogData.title}
                   onChange={handleChange}
                   name="title"
@@ -74,13 +74,13 @@ const EditBlog = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
+                  className="block mb-2 text-sm font-medium  "
                 >
                   Content
                 </label>
 
                 <textarea
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   cols="30"
                   rows="6"
                   value={blogData.content}
@@ -93,13 +93,13 @@ const EditBlog = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900 "
+                  className="block mb-2 text-sm font-medium  "
                 >
                   File Upload
                 </label>
 
                 <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   type="file"
                   name="image"
                   id="image"
@@ -117,7 +117,8 @@ const EditBlog = () => {
           </div>
         </div>
       </div>
-    </>
+     
+    </div>
   );
 };
 

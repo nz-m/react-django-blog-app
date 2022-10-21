@@ -8,7 +8,7 @@ const Comment = ({ comment, handleDeleteComment, user }) => {
   };
 
   return (
-    <div className="bg-slate-50 border border-slate-200 px-6 py-3 rounded-2xl animate__animated animate__bounceIn">
+    <div className="bg-primary-neutral border border-primary-neutral px-6 py-3 rounded-2xl animate__animated animate__bounceIn">
       <div className="flex items-start justify-between">
         <div className="flex gap-2">
           <img
@@ -24,13 +24,13 @@ const Comment = ({ comment, handleDeleteComment, user }) => {
 
         <div className="">
           {user && user.username === username ? (
-            <button className="btn btn-primary btn-sm" onClick={handleDelete}>
+            <button className="btn btn-error btn-sm" onClick={handleDelete}>
               <AiOutlineDeleteRow className="text-2xl rounded-full" />
             </button>
           ) : null}
         </div>
       </div>
-      <p className="pl-12 text-lg">{body}</p>
+      <p className="pl-12 md:text-lg">{body}</p>
     </div>
   );
 };

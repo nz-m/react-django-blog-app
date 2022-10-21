@@ -18,12 +18,12 @@ const Navbar = () => {
           py-4
           md:py-0
           px-4
-          text-lg text-gray-700
-          bg-white
+          text-lg 
+          
         "
         >
           <div>
-            <Link to="/">Blogger</Link>
+            <Link to="/" className="font-semibold text-2xl">Blogger <span className="text-primary font-bold text-3xl">.</span> </Link>
           </div>
 
           <svg
@@ -48,24 +48,23 @@ const Navbar = () => {
           >
             <ul
               className="
-              pt-4
-              text-base text-gray-700
+              pt-4 text-gray-300 text-base
               md:flex
               md:justify-between 
               md:pt-0"
             >
-              <li className="md:p-4 py-2 block hover:text-purple-400">
+              <li className="md:p-4 py-2 block hover:text-primary">
                 <Link to="/music">Music</Link>
               </li>
-              <li className="md:p-4 py-2 block hover:text-purple-400">
+              <li className="md:p-4 py-2 block hover:text-primary hover:scale-95 transition duration-500">
                 <Link to="/technology">Technology</Link>
               </li>
-              <li className="md:p-4 py-2 block hover:text-purple-400">
+              <li className="md:p-4 py-2 block hover:text-primary hover:scale-95 transition duration-500">
                 <Link to="/education">Education</Link>
               </li>
 
               {user ? (
-                <li className="md:p-4 py-2 block hover:text-purple-400">
+                <li className="md:p-4 py-2 block hover:text-primary hover:scale-95 transition duration-500">
                   <Link to="/profile">Profile</Link>
                 </li>
               ) : null}
@@ -73,9 +72,9 @@ const Navbar = () => {
               <li className="md:p-4 py-2 block">
                 {user ? (
                   <div className="flex gap-4">
-                    <p> Hello {user.username} Welcome To Blogger</p>
+                    <p className="text-primary-accent">welcome {user.username}</p>
                     <button
-                      className=" hover:text-purple-400 text-purple-500"
+                      className="btn btn-sm btn-outline btn-error text-white"
                       onClick={() => {
                         userLogout();
                         navigate("/");
@@ -86,7 +85,7 @@ const Navbar = () => {
                   </div>
                 ) : (
                   <>
-                    <Link to="/login">Login</Link>
+                    <Link className="btn btn-sm  btn-primary text-white" to="/login">Login</Link>
                   </>
                 )}
               </li>
