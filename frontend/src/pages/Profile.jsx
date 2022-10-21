@@ -51,7 +51,7 @@ const Profile = () => {
   if (!user) {
     return (
       <>
-        <h1>
+        <h1 className="text-white">
           You are logged out. Please
           <Link to="/login">
             <span className="text-emerald-600"> Login </span>
@@ -64,30 +64,47 @@ const Profile = () => {
     return (
       <>
         {loading && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "80vh",
-          }}
-        >
-          <Loader type={"bubbles"} color={"deepskyblue"} />
-        </div>
-      )}
-    
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "80vh",
+            }}
+          >
+            <Loader type={"bubbles"} color={"deepskyblue"} />
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10 items-center">
           <div className="space-y-5">
-            <p className="text-6xl font-semibold">
-              Welcome <span className="text-primary">{profile.username} </span> to Dashboard
+            <p className="text-4xl font-semibold">
+              Hi! <span className="text-primary">{profile.username}.</span>{" "}
+              welcome to
+              <span className="site-logo">
+                <span className="text-primary"> B</span>log
+                <span className="text-primary">H</span>ub
+              </span>
             </p>
-            <p className="text-lg">
-              You can create multiple blog with multiple category so now let's
-              get started
+            <p className="text-lg font-semibold">
+              {blogs.length > 0 ? (
+                <>
+                  You have written{" "}
+                  <span className="text-primary">{blogs.length}</span> blogs so
+                  far.
+                </>
+              ) : (
+                <>
+                  You have not written any blogs yet. Write your first blog now!
+                </>
+              )}
             </p>
-            <button className="btn bg-cyan-500 border-none mt-5" to="/create">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
+              to="/create"
+            >
               {" "}
-              <Link to="/create">Create Blog</Link>
+              <Link to="/create">Create blog</Link>
             </button>
           </div>
           <img
@@ -96,7 +113,15 @@ const Profile = () => {
             alt=""
           />
         </div>
-        <p className="text-4xl font-bold text-center blog-title my-10">My Blog</p>
+
+        {blogs.length > 0 && (
+          <>
+            <p className="text-3xl font-bold text-center blog-title my-10">
+              My Blogs
+            </p>
+          </>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2">
           {blogs.map((blog) => {
             return (

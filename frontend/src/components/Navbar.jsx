@@ -1,11 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
 
+  const toggleNav = () => {
+    setShow(!show);
+    console.log(show);
+  };
   return (
     <>
       <header>
@@ -18,33 +23,43 @@ const Navbar = () => {
           py-4
           md:py-0
           px-4
-          text-lg 
-          
+          text-lg
         "
         >
           <div>
-            <Link to="/" className="font-semibold text-2xl">Blogger <span className="text-primary font-bold text-3xl">.</span> </Link>
+            <Link to="/">
+              <span className="site-logo" style={{ fontSize: "2rem" }}>
+                <span className="text-primary"> B</span>log
+                <span className="text-primary">H</span>ub
+              </span>
+            </Link>
           </div>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="menu-button"
-            className="h-6 w-6 cursor-pointer md:hidden block"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+          <button
+            className="block md:hidden border border-primary rounded-lg p-2 focus:outline-none"
+            type="button"
+            onClick={toggleNav}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              id="menu-button"
+              className="h-6 w-6 cursor-pointer md:hidden block"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
 
           <div
-            className="hidden w-full md:flex md:items-center md:w-auto"
-            id="menu"
+            className={`${
+              show ? "block" : "hidden"
+            } md:block w-full md:w-auto md:ml-auto align-middle`}
           >
             <ul
               className="
@@ -53,39 +68,43 @@ const Navbar = () => {
               md:justify-between 
               md:pt-0"
             >
-              <li className="md:p-4 py-2 block hover:text-primary">
+              <li className="md:p-4 py-2 block hover:text-primary font-bold">
                 <Link to="/music">Music</Link>
               </li>
-              <li className="md:p-4 py-2 block hover:text-primary hover:scale-95 transition duration-500">
+              <li className="md:p-4 py-2 block hover:text-primary font-bold">
                 <Link to="/technology">Technology</Link>
               </li>
-              <li className="md:p-4 py-2 block hover:text-primary hover:scale-95 transition duration-500">
+              <li className="md:p-4 py-2 block hover:text-primary font-bold">
                 <Link to="/education">Education</Link>
               </li>
 
               {user ? (
-                <li className="md:p-4 py-2 block hover:text-primary hover:scale-95 transition duration-500">
-                  <Link to="/profile">Profile</Link>
+                <li className="md:p-4 py-2 block hover:text-primary ">
+                  <Link to="/profile">
+                    <p className="text-primary font-bold">{user.username}</p>
+                  </Link>
                 </li>
               ) : null}
 
               <li className="md:p-4 py-2 block">
                 {user ? (
-                  <div className="flex gap-4">
-                    <p className="text-primary-accent">welcome {user.username}</p>
-                    <button
-                      className="btn btn-sm btn-outline btn-error text-white"
-                      onClick={() => {
-                        userLogout();
-                        navigate("/");
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </div>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
+                    onClick={() => {
+                      userLogout();
+                      navigate("/");
+                    }}
+                  >
+                    Logout
+                  </button>
                 ) : (
                   <>
-                    <Link className="btn btn-sm  btn-primary text-white" to="/login">Login</Link>
+                    <Link
+                      className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-1 px-4 rounded"
+                      to="/login"
+                    >
+                      Login
+                    </Link>
                   </>
                 )}
               </li>
