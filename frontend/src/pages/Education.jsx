@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Blog from "../components/Blog";
 import { GetContent } from "../services/GetContent";
 import Loader from "../components/Loader";
-import blog from '../Assets/blog.png'
+import notfound from "../assets/notfound.png";
 const Education = () => {
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
@@ -16,7 +16,7 @@ const Education = () => {
 
   return (
     <>
-     {loading && (
+      {loading && (
         <div
           style={{
             display: "flex",
@@ -53,10 +53,13 @@ const Education = () => {
           })
         ) : (
           <>
-          <div className="">
-            <p className="text-5xl font-semibold text-center ">Sorry, no blog entries found for <span className="text-primary">Education</span> category!</p>
-          </div>
-          <img src={blog} alt="" />
+            <div className="">
+              <p className="text-5xl font-semibold text-center ">
+                No blog entries found in{" "}
+                <span className="text-primary">Education</span> category!
+              </p>
+            </div>
+            <img src={notfound} alt="" />
           </>
         )}
       </div>

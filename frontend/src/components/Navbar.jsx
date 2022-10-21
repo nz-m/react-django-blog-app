@@ -68,13 +68,13 @@ const Navbar = () => {
               md:pt-0"
             >
               <li className="md:p-4 py-2 block hover:text-primary font-bold">
-                <Link to="/music">Music</Link>
-              </li>
-              <li className="md:p-4 py-2 block hover:text-primary font-bold">
                 <Link to="/technology">Technology</Link>
               </li>
               <li className="md:p-4 py-2 block hover:text-primary font-bold">
                 <Link to="/education">Education</Link>
+              </li>
+              <li className="md:p-4 py-2 block hover:text-primary font-bold">
+                <Link to="/music">Music</Link>
               </li>
 
               {user ? (
@@ -85,10 +85,10 @@ const Navbar = () => {
                 </li>
               ) : null}
 
-              <li className="md:p-4 py-2 block">
-                {user ? (
+              {user ? (
+                <li className="md:p-4 py-2 block hover:text-primary font-bold">
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded"
+                    className="bg-blue-800 hover:bg-blue-900 text-white font-bold py-1 px-4 rounded"
                     onClick={() => {
                       userLogout();
                       navigate("/");
@@ -96,27 +96,23 @@ const Navbar = () => {
                   >
                     Logout
                   </button>
-                ) : (
-                  <>
-                    <span>
-                      <Link
-                        className="bg-bg-inherit text-white font-bold py-1 px-4 rounded"
-                        to="/signup"
-                      >
-                        Sign Up
-                      </Link>
-                    </span>
-                    <span className="mx-2">
-                      <Link
-                        className="bg-blue-800 hover:bg-blue-900 text-white font-bold py-1 px-4 rounded"
-                        to="/login"
-                      >
-                        Login
-                      </Link>
-                    </span>
-                  </>
-                )}
-              </li>
+                </li>
+              ) : (
+                <>
+                  <li className="md:p-4 py-2 block hover:text-primary font-bold">
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+
+                  <li className="md:p-4 py-2 block hover:text-primary font-bold">
+                    <Link
+                      className="bg-blue-800 hover:bg-blue-900 text-white font-bold py-1 px-4 rounded"
+                      to="/login"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </nav>

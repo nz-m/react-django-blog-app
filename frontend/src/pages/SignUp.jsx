@@ -60,8 +60,6 @@ const SignUp = () => {
 
   return (
     <>
-     
-
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-2xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -125,7 +123,7 @@ const SignUp = () => {
                   className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   required
                 />
-                 {message ? message : null}
+                {message ? message : null}
               </div>
 
               <div>
@@ -142,7 +140,9 @@ const SignUp = () => {
                   onChange={handleChange}
                   className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                 />
+              </div>
 
+              <div>
                 <label
                   htmlFor="photo"
                   className="block mb-2 text-sm font-medium "
@@ -159,21 +159,24 @@ const SignUp = () => {
                   required
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
-              >
-                Sign Up
-              </button>
-              <p className="text-sm font-light text-gray-300 ">
-                Have an account already?{" "}
-                <Link
-                  to={"/signup"}
-                  className="font-medium text-teal-600 hover:underline dark:text-teal-500"
+
+              <div>
+                <button
+                  type="submit"
+                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                 >
-                  Log In
-                </Link>
-              </p>
+                  Sign Up
+                </button>
+                <p className="text-sm font-light text-gray-300 text-center my-2">
+                  Have an account already?{" "}
+                  <Link
+                    to={"/login"}
+                    className="font-medium text-teal-600 hover:underline dark:text-teal-500"
+                  >
+                    Log In
+                  </Link>
+                </p>
+              </div>
             </form>
           </div>
         </div>

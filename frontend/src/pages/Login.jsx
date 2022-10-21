@@ -65,7 +65,7 @@ const Login = () => {
                 >
                   Sign in
                 </button>
-                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                <p className="text-sm font-light text-white dark:text-white">
                   Don’t have an account yet?{" "}
                   <Link
                     to={"/signup"}

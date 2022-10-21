@@ -90,8 +90,8 @@ const Profile = () => {
               {blogs.length > 0 ? (
                 <>
                   You have written{" "}
-                  <span className="text-primary">{blogs.length}</span> blogs so
-                  far.
+                  <span className="text-primary">{blogs.length}</span>
+                  {blogs.length > 1 ? " blogs" : " blog"} so far.
                 </>
               ) : (
                 <>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Blog from "../components/Blog";
 import { GetContent } from "../services/GetContent";
 import Loader from "../components/Loader";
-import blog from '../Assets/blog.png'
+import notfound from "../assets/notfound.png";
 const Music = () => {
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
@@ -55,9 +55,9 @@ const Music = () => {
         ) : (
           <>
           <div className="">
-            <p className="text-5xl font-semibold text-center ">Sorry, no blog entries found for <span className="text-primary">Music</span> category!</p>
+            <p className="text-5xl font-semibold text-center ">No blog entries found in <span className="text-primary">Music</span> category!</p>
           </div>
-          <img src={blog} alt="" />
+          <img src={notfound} alt="" />
           </>
         )}
       </div>

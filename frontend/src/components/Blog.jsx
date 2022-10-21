@@ -38,7 +38,7 @@ const Blog = (props) => {
         <div className="flex flex-wrap gap-4 md:justify-between px-4 pt-4">
           <div className="flex gap-2 items-center">
             <img
-              className="w-10 h-10 rounded-full"
+              className="w-10 h-10 object-cover rounded-full"
               src={`${BASE_URL}${author_photo}`}
               alt=""
             />
@@ -54,7 +54,7 @@ const Blog = (props) => {
         </div>
         <div className="flex flex-col px-4 py-2">
           <div className="flex justify-between items-center">
-            <p className="text-2xl hover:underline transition duration-700  font-bold cursor-pointer line-clamp-1">
+            <p className="text-2xl hover:underline transition duration-700 font-bold cursor-pointer line-clamp-1 blog-title">
               <Link to={`/blog/${id}`}>{title}</Link>
             </p>
             <div className="flex items-center gap-3">
@@ -76,14 +76,18 @@ const Blog = (props) => {
               theme={"bubble"}
             />
           </div>
-          <Link to={`/blog/${id}`} className="md:hidden flex justify-center items-center">
-          <p className=" flex justify-center items-center px-3 py-1 rounded-full mb-3 bg-gradient-to-r from-cyan-500 to-blue-500">Continue reading</p>
+          <Link
+            to={`/blog/${id}`}
+            className="md:hidden flex justify-center items-center"
+          >
+            <p className="flex justify-center items-center px-3 py-1 rounded-full mb-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+              Continue reading
+            </p>
           </Link>
-        
         </div>
-        <div className="btn btn-sm hidden md:absolute md:flex md:-bottom-4 md:left-1/3 bg-gradient-to-r from-cyan-600 to-blue-600 border-none hover:scale-95">
+        <button className="btn btn-sm hidden md:absolute md:flex md:-bottom-4 md:left-1/3 bg-gradient-to-r from-cyan-600 to-blue-600 border-none hover:scale-95 text-white hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500">
           <Link to={`/blog/${id}`}>Continue reading</Link>
-        </div>
+        </button>
       </div>
     </div>
   );
