@@ -9,7 +9,6 @@ const Navbar = () => {
 
   const toggleNav = () => {
     setShow(!show);
-    console.log(show);
   };
   return (
     <>
@@ -99,12 +98,22 @@ const Navbar = () => {
                   </button>
                 ) : (
                   <>
-                    <Link
-                      className="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-1 px-4 rounded"
-                      to="/login"
-                    >
-                      Login
-                    </Link>
+                    <span>
+                      <Link
+                        className="bg-bg-inherit text-white font-bold py-1 px-4 rounded"
+                        to="/signup"
+                      >
+                        Sign Up
+                      </Link>
+                    </span>
+                    <span className="mx-2">
+                      <Link
+                        className="bg-blue-800 hover:bg-blue-900 text-white font-bold py-1 px-4 rounded"
+                        to="/login"
+                      >
+                        Login
+                      </Link>
+                    </span>
                   </>
                 )}
               </li>

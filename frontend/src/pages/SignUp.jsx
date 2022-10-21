@@ -146,7 +146,7 @@ const SignUp = () => {
                   htmlFor="photo"
                   className="block mb-2 text-sm font-medium "
                 >
-                  Photo (optional)
+                  Photo (Max 2MB)
                 </label>
 
                 <input
@@ -155,6 +155,7 @@ const SignUp = () => {
                   id="photo"
                   onChange={handlePhotoChange}
                   className="bg-primary-base shadow-lg sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  required
                 />
               </div>
               <button

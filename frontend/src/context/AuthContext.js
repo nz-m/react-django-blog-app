@@ -11,6 +11,7 @@ export const AuthContextProvider = ({ children }) => {
   const userData = JSON.parse(localStorage.getItem("user"));
   const tokenData = JSON.parse(localStorage.getItem("authToken"));
   const [loading, setLoading] = useState(true);
+  const [errMessage, setErrMessage] = useState("");
   let [user, setUser] = useState(
     localStorage.getItem("user") ? userData : null
   );
@@ -39,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(jwt_decode(data.access)));
       navigate("/");
     } else {
-      alert("Something went wrong!!!");
+      setErrMessage(data.detail);
     }
   };
 
@@ -95,6 +96,7 @@ export const AuthContextProvider = ({ children }) => {
         user: user,
         authToken: authToken,
         userLogout: userLogout,
+        errMessage: errMessage,
       }}
     >
       {loading ? null : children}
