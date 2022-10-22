@@ -85,7 +85,7 @@ const Blog = (props) => {
             </p>
           </Link>
         </div>
-        <button className="btn btn-sm hidden md:absolute md:flex md:-bottom-4 md:left-1/3 bg-gradient-to-r from-cyan-600 to-blue-600 border-none hover:scale-95 text-white hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500">
+        <button className="btn btn-sm hidden md:absolute md:flex md:-bottom-4 md:left-1/3 bg-gradient-to-r from-cyan-600 to-blue-600 border-none hover:scale-95 text-white hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-500 capitalize">
           <Link to={`/blog/${id}`}>Continue reading</Link>
         </button>
       </div>

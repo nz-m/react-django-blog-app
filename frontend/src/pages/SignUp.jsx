@@ -126,21 +126,7 @@ const SignUp = () => {
                 {message ? message : null}
               </div>
 
-              <div>
-                <label
-                  htmlFor="bio"
-                  className="block mb-2 text-sm font-medium "
-                >
-                  Bio (optional)
-                </label>
-                <input
-                  name="bio"
-                  id="bio"
-                  value={user.bio}
-                  onChange={handleChange}
-                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
-                />
-              </div>
+        
 
               <div>
                 <label
@@ -159,11 +145,26 @@ const SignUp = () => {
                   required
                 />
               </div>
+              <div className="md:col-span-2">
+                <label
+                  htmlFor="bio"
+                  className="block mb-2 text-sm font-medium "
+                >
+                  Bio (optional)
+                </label>
+                <input
+                  name="bio"
+                  id="bio"
+                  value={user.bio}
+                  onChange={handleChange}
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 py-5 focus:outline-none"
+                />
+              </div>
 
-              <div>
+              <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+                  className=" text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 flex justify-center w-full"
                 >
                   Sign Up
                 </button>

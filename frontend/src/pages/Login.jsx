@@ -20,13 +20,14 @@ const Login = () => {
     <>
       <section>
         {message && <h1 className="text-white">{message}</h1>}
-        {errMessage && <h1 className="text-white">{errMessage}</h1>}
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+       
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-[80vh] lg:py-0">
           <div className="w-full bg-primary-neutral  rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 ">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
                 Sign in to your account
               </h1>
+              {errMessage && <h1 className="text-primary-error">{errMessage}</h1>}
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label

@@ -185,7 +185,7 @@ const BlogDetails = () => {
           <div className="rounded-2xl bg-primary-neutral border border-primary-base  relative shadow-2xl">
             <div className="overflow-hidden rounded-t-2xl relative">
               <img
-                className=" h-[500px] w-full object-cover "
+                className=" md:h-[500px] w-full object-cover "
                 src={`${BASE_URL}${image}`}
                 alt=""
               />
@@ -260,7 +260,7 @@ const BlogDetails = () => {
               required
             />
             <div className="flex justify-end mt-5">
-              <button className="btn btn-sm btn-primary text-white mb-5" type="submit">
+              <button className="btn btn-sm bg-blue-500 text-white mb-5 capitalize" type="submit">
                 Comment
               </button>
             </div>

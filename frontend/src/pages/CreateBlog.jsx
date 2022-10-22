@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-// import createblog from "../Assets/createblog.png";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import FileValidation from "../services/FileValidation";
@@ -92,9 +91,9 @@ const CreateBlog = () => {
 
   return (
     <div className="items-center">
-      {message && <div className="error">{message}</div>}
+     
       <div className="flex flex-col items-center justify-center  md:h-screen lg:py-0">
-        <div className="w-full bg-slate-100  rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+        <div className="w-full bg-slate-800  rounded shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
               Create a blog
@@ -108,7 +107,7 @@ const CreateBlog = () => {
                   Title
                 </label>
                 <input
-                  className="bg-slate-100 sm:text-sm rounded-lg focus:ring-primary block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base sm:text-sm rounded focus:ring-primary block w-full p-2.5 focus:outline-none"
                   type="text"
                   name="title"
                   id="title"
@@ -125,11 +124,14 @@ const CreateBlog = () => {
                 >
                   Content
                 </label>
-                <ReactQuill
-                  theme="snow"
-                  value={value}
-                  onChange={handleEditorChange}
-                />
+                <div className="rounded overflow-hidden">
+                  <ReactQuill
+                    className="text-black bg-slate-400 "
+                    theme="snow"
+                    value={value}
+                    onChange={handleEditorChange}
+                  />
+                </div>
               </div>
               <div>
                 <label
@@ -140,7 +142,7 @@ const CreateBlog = () => {
                 </label>
 
                 <select
-                  className="bg-slate-100 shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                  className="bg-primary-base shadow-lg  sm:text-sm rounded focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   name="category"
                   id="category"
                   value={blog.category}
@@ -164,17 +166,18 @@ const CreateBlog = () => {
                 </label>
 
                 <input
-                  className="bg-slate-100 sm:text-sm rounded-sm focus:ring-primary  block w-full p-2.5"
+                  className="bg-primary-base sm:text-sm rounded-sm focus:ring-primary  block w-full p-2.5"
                   type="file"
                   name="image"
                   id="image"
                   onChange={handleFile}
                 />
+                 {message && <div className="text-primary-error text-center mt-2">{message}</div>}
               </div>
 
               <button
                 type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
               >
                 Create Blog
               </button>

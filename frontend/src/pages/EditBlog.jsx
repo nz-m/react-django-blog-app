@@ -67,7 +67,7 @@ const EditBlog = () => {
         </div>
       )}
 
-      <div className="w-full bg-slate-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
+      <div className="w-full bg-slate-800 rounded-lg shadow dark:border md:mt-0 sm:max-w-xl xl:p-0 ">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight  md:text-2xl">
             Edit your Blog
@@ -81,7 +81,7 @@ const EditBlog = () => {
                 Title
               </label>
               <input
-                className="bg-slate-100 shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                 value={blogData.title}
                 onChange={handleChange}
                 name="title"
@@ -96,12 +96,14 @@ const EditBlog = () => {
               >
                 Content
               </label>
-
-              <ReactQuill
-                theme="snow"
-                value={value}
-                onChange={handleEditorChange}
-              />
+              <div className="rounded overflow-hidden">
+                  <ReactQuill
+                    className="text-black bg-slate-400 "
+                    theme="snow"
+                    value={value}
+                    onChange={handleEditorChange}
+                  />
+                </div>
             </div>
 
             <div>
@@ -113,7 +115,7 @@ const EditBlog = () => {
               </label>
 
               <input
-                className="bg-slate-100 shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
+                className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                 type="file"
                 name="image"
                 id="image"
