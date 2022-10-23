@@ -1,15 +1,17 @@
 # react-django-blog-app
-A platform for writing blogs, articles etc. 
-
-## UI Screenshots
-![Screenshot (75)](https://user-images.githubusercontent.com/87283264/197416491-2422e3cc-e262-45e1-9751-90b5dcbdb452.png)
-![Screenshot (74)](https://user-images.githubusercontent.com/87283264/197416494-0904c09f-631e-4d62-80d4-8fee654b3954.png)
+A platform for writing blogs, articles etc.
+[Live](https://bloghub-react.netlify.app/)
 
 ## Technologies
 1. React
 2. Tailwind CSS
 3. Django 4.1.2
 3. Django REST Framework
+
+## UI Screenshots
+![Screenshot (74)](https://user-images.githubusercontent.com/87283264/197416494-0904c09f-631e-4d62-80d4-8fee654b3954.png)
+![Screenshot (75)](https://user-images.githubusercontent.com/87283264/197416491-2422e3cc-e262-45e1-9751-90b5dcbdb452.png)
+
 
 ## Setting up the backend server
 1. Clone the project
