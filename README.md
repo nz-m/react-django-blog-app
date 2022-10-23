@@ -10,7 +10,8 @@ A platform for writing blogs, articles etc.
 
 ## UI Screenshots
 ![Screenshot (74)](https://user-images.githubusercontent.com/87283264/197416494-0904c09f-631e-4d62-80d4-8fee654b3954.png)
-![Screenshot (75)](https://user-images.githubusercontent.com/87283264/197416491-2422e3cc-e262-45e1-9751-90b5dcbdb452.png)
+![Screenshot (76)](https://user-images.githubusercontent.com/87283264/197416771-42d33484-241b-47ea-b979-ff389bcd8ec4.png)
+
 
 
 ## Setting up the backend server
@@ -62,6 +63,7 @@ npm start
 
 ## Credits
 Developer : [Neaz Mahmud](https://github.com/nz-m)
+
 Designer : [Rownok](https://github.com/rownokmahbub)
 
 ## License
