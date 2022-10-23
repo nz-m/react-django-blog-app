@@ -87,6 +87,9 @@ const SignUp = () => {
                   required
                   placeholder="Enter a unique username"
                 />
+                {message ? (
+                  <p className="my-2 text-red-500">{message} </p>
+                ) : null}
               </div>
               <div>
                 <label
@@ -123,10 +126,7 @@ const SignUp = () => {
                   className="bg-primary-base shadow-lg  sm:text-sm rounded-lg focus:ring-primary  block w-full p-2.5 focus:outline-none"
                   required
                 />
-                {message ? message : null}
               </div>
-
-        
 
               <div>
                 <label
@@ -164,7 +164,7 @@ const SignUp = () => {
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className=" text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 flex justify-center w-full"
+                  className=" text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800 flex justify-center w-full"
                 >
                   Sign Up
                 </button>

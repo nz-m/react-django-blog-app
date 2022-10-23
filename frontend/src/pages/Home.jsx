@@ -3,6 +3,7 @@ import Blog from "../components/Blog";
 import notfound from "../assets/notfound.png";
 import { GetContent } from "../services/GetContent";
 import Loader from "../components/Loader";
+
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
@@ -28,7 +29,7 @@ const Home = () => {
           <Loader type={"bubbles"} color={"deepskyblue"} />
         </div>
       )}
-      {blogs.length === 0 ? (
+      {!loading && blogs.length === 0 ? (
         <>
           <p className="text-2xl font-semibold text-center">
             No blog entries found!

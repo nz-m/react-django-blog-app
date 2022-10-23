@@ -71,12 +71,11 @@ export const AuthContextProvider = ({ children }) => {
     if (loading) {
       updateToken();
     }
-    const hours = 1000 * 60 * 60 * 12;
     let interval = setInterval(() => {
       if (authToken) {
         updateToken();
       }
-    }, hours);
+    }, 1000 * 60 * 4);
 
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps

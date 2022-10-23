@@ -97,13 +97,13 @@ const EditBlog = () => {
                 Content
               </label>
               <div className="rounded overflow-hidden">
-                  <ReactQuill
-                    className="text-black bg-slate-400 "
-                    theme="snow"
-                    value={value}
-                    onChange={handleEditorChange}
-                  />
-                </div>
+                <ReactQuill
+                  className="text-black bg-slate-400 "
+                  theme="snow"
+                  value={value}
+                  onChange={handleEditorChange}
+                />
+              </div>
             </div>
 
             <div>

@@ -28,10 +28,21 @@ const Education = () => {
           <Loader type={"bubbles"} color={"deepskyblue"} />
         </div>
       )}
-      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
-        {blogs.length > 0 ? (
-          blogs.map((blog) => {
-            return (
+
+      {!loading && blogs.length === 0 ? (
+        <div className="flex flex-col items-center justify-center">
+          <img src={notfound} alt="" />
+          <div>
+            <p className="text-4xl font-semibold text-center ">
+              No blog entries found in{" "}
+              <span className="text-primary">Education</span> category!
+            </p>
+          </div>
+        </div>
+      ) : (
+        blogs.map((blog) => {
+          return (
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
               <Blog
                 key={blog.id}
                 id={blog.id}
@@ -49,20 +60,10 @@ const Education = () => {
                 reading_time={blog.reading_time}
                 comment_count={blog.comment_count}
               />
-            );
-          })
-        ) : (
-          <>
-            <div className="">
-              <p className="text-5xl font-semibold text-center ">
-                No blog entries found in{" "}
-                <span className="text-primary">Education</span> category!
-              </p>
             </div>
-            <img src={notfound} alt="" />
-          </>
-        )}
-      </div>
+          );
+        })
+      )}
     </>
   );
 };

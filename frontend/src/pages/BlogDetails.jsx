@@ -12,7 +12,7 @@ import { IoIosTimer } from "react-icons/io";
 import LikeBtn from "../components/LikeBtn";
 import Loader from "../components/Loader";
 import ReactQuill from "react-quill";
-import 'react-quill/dist/quill.bubble.css';
+import "react-quill/dist/quill.bubble.css";
 
 const BlogDetails = () => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -185,7 +185,7 @@ const BlogDetails = () => {
           <div className="rounded-2xl bg-primary-neutral border border-primary-base  relative shadow-2xl">
             <div className="overflow-hidden rounded-t-2xl relative">
               <img
-                className=" md:h-[500px] w-full object-cover "
+                className=" md:h-[500px] w-full object-cover"
                 src={`${BASE_URL}${image}`}
                 alt=""
               />
@@ -197,7 +197,7 @@ const BlogDetails = () => {
             <div className="flex flex-wrap md:justify-between px-2 md:px-10 pt-4">
               <div className="flex gap-2 items-center">
                 <img
-                  className="w-10 h-10 rounded-full"
+                  className="w-10 h-10 rounded-full object-cover"
                   src={`${BASE_URL}${author_photo}`}
                   alt=""
                 />
@@ -260,7 +260,10 @@ const BlogDetails = () => {
               required
             />
             <div className="flex justify-end mt-5">
-              <button className="btn btn-sm bg-blue-500 text-white mb-5 capitalize" type="submit">
+              <button
+                className="btn btn-sm bg-blue-500 text-white mb-5 capitalize"
+                type="submit"
+              >
                 Comment
               </button>
             </div>

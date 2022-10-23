@@ -20,12 +20,12 @@ const Comment = ({ comment, handleDeleteComment, user }) => {
             alt=""
           />
           <div className="flex flex-col -space-y-1">
-            <p className="text-xl font-medium">{username}</p>
-            <p className="text-xs text-gray-500">{date_format}</p>
+            <p className="text-xl font-bold">{username}</p>
+            <p className="text-xs text-gray-400 text-semibold">{date_format}</p>
           </div>
         </div>
 
-        <div className="">
+        <div>
           {user && user.username === username ? (
             <button className="btn btn-error btn-sm" onClick={handleDelete}>
               <AiOutlineDeleteRow className="text rounded-full" />
