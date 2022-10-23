@@ -1,8 +1,21 @@
 # react-django-blog-app
+A platform for writing blogs, articles etc. 
 
-## Django project setup
+## UI Screenshots
+![Screenshot (75)](https://user-images.githubusercontent.com/87283264/197416491-2422e3cc-e262-45e1-9751-90b5dcbdb452.png)
+![Screenshot (74)](https://user-images.githubusercontent.com/87283264/197416494-0904c09f-631e-4d62-80d4-8fee654b3954.png)
+
+## Technologies
+1. React
+2. Tailwind CSS
+3. Django 4.1.2
+3. Django REST Framework
+
+## Setting up the backend server
 1. Clone the project
-
+```bash
+git clone https://github.com/nz-m/react-django-blog-app.git
+```
 2. Go to the project directory (backend)
 ```bash
 cd backend
@@ -15,7 +28,6 @@ python -m venv env
 env\Scripts\activate
 ```
 4. Install dependencies
-
 ```bash
 pip install -r requirements.txt
 ```
@@ -32,3 +44,24 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 Now the project should be running on http://127.0.0.1:8000/
+
+## Setting up the react app
+
+**.env file content for backend url**
+```
+REACT_APP_BASE_URL = http://127.0.0.1:8000
+```
+run
+```bash
+cd frontend
+npm install
+npm start
+```
+
+## Credits
+Developer : [Neaz Mahmud](https://github.com/nz-m)
+Designer : [Rownok](https://github.com/rownokmahbub)
+
+## License
+MIT license @ [Neaz Mahmud](https://github.com/nz-m/react-django-blog-app/blob/main/LICENSE)
+
